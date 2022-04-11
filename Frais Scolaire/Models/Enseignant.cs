@@ -20,7 +20,7 @@ public class Enseignant
     [Required]
     public string Statut { get; set; }
     [Required]
-    public string Salaire { get; set; }
+    public int Salaire { get; set; }
     
     public ICollection<Matiere>? EnseignantMatieres { get; set; }
 }

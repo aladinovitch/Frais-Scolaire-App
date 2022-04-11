@@ -5,8 +5,6 @@ public class Absence
 {
     public int Id { get; set; }
     
-    [Required]
-    public DateTime Date { get; set; }
     public string Justification { get; set; }
     [Required]
     public int EtudiantId { get; set; }

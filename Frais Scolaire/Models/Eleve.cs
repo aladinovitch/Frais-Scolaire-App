@@ -28,4 +28,6 @@ public class Eleve
     
     public ICollection<Absence>? EtudiantAbsences { get; set; }
     public ICollection<Versement>? EtudiantVersements { get; set; }
+
+    public string Fullname => $"{Nom}, {Prenom}";
 }

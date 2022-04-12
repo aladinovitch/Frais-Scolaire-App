@@ -417,6 +417,44 @@ namespace Frais_Scolaire.Data.Migrations
                     b.HasIndex("MatiereId");
 
                     b.ToTable("Enseignement", "Frais_Scolaire");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GroupeId = 1,
+                            MatiereId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GroupeId = 2,
+                            MatiereId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GroupeId = 3,
+                            MatiereId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            GroupeId = 1,
+                            MatiereId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            GroupeId = 2,
+                            MatiereId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            GroupeId = 3,
+                            MatiereId = 2
+                        });
                 });
 
             modelBuilder.Entity("Frais_Scolaire.Models.Groupe", b =>
@@ -1046,33 +1084,33 @@ namespace Frais_Scolaire.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bbb8f327-e0d0-4dbb-a614-a0d97f812b63",
+                            Id = "aba2b93c-5a7f-4832-bd7b-b70777d343ba",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "11bc9b59-9b48-4504-a95c-d1c3e847e869",
+                            ConcurrencyStamp = "85d84b57-7937-4441-a36d-4d2332cf7d3a",
                             Email = "manager@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MANAGER@EMAIL.COM",
                             NormalizedUserName = "MANAGER@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMJi4FkMlINS6OgwR1sdBVrConz6QSaZyCBkdygkJIYnqWbUD79jRnJvcbTfbBcJgA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFfzPMFasxyVPM4i8LgrdKDR/QP/WbsxHFE4ZKuvQkFwhNSZxKQ74/mLaqHg24PL2A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "59799c03-964d-418e-9077-231e591a7f1f",
+                            SecurityStamp = "b89ad217-754a-465a-9fff-e2459011407e",
                             TwoFactorEnabled = false,
                             UserName = "manager@email.com"
                         },
                         new
                         {
-                            Id = "e6ad1f14-82e3-42f3-831c-a6364711082b",
+                            Id = "e54498d7-4630-4ce5-8a16-316e58531b8d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f4987f69-2ac0-42c8-bd13-779fbdf153af",
+                            ConcurrencyStamp = "99c8a220-e651-48ef-992f-b77b464d57c0",
                             Email = "basic@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "BASIC@EMAIL.COM",
                             NormalizedUserName = "BASIC@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELYcUepWbCMZ8gf0S4jjDKFrB969F4d6S7ZoQR6Qz81ZmNx6npkytMFojf9v2EhJrw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKFucVI5w/PWkMHFPvJw3D+Jojh6IlTd0gWPOdufOEIAgiTWkn6CBxABaJHNjjiR6g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2d68a78c-d707-4535-862f-cd47bfc0b81f",
+                            SecurityStamp = "9fc05822-cc16-4622-8c47-ed988ea13ed3",
                             TwoFactorEnabled = false,
                             UserName = "basic@email.com"
                         });
@@ -1108,14 +1146,14 @@ namespace Frais_Scolaire.Data.Migrations
                             Id = 1,
                             ClaimType = "Manager",
                             ClaimValue = "true",
-                            UserId = "bbb8f327-e0d0-4dbb-a614-a0d97f812b63"
+                            UserId = "aba2b93c-5a7f-4832-bd7b-b70777d343ba"
                         },
                         new
                         {
                             Id = 2,
                             ClaimType = "Basic user",
                             ClaimValue = "true",
-                            UserId = "e6ad1f14-82e3-42f3-831c-a6364711082b"
+                            UserId = "e54498d7-4630-4ce5-8a16-316e58531b8d"
                         });
                 });
 

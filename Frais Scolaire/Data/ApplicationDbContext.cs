@@ -241,6 +241,15 @@ namespace Frais_Scolaire.Data
                 new Seance { Id = 14, Numero = 14, Date = DateTime.Parse("2022-01-14 13:00"), MatiereId = 3 },
                 new Seance { Id = 15, Numero = 15, Date = DateTime.Parse("2022-01-15 15:00"), MatiereId = 3 });
 
+            modelBuilder.Entity<Enseignement>().HasData(
+                new Enseignement { Id=1, GroupeId=1, MatiereId=1},
+                new Enseignement { Id=2, GroupeId=2, MatiereId=1},
+                new Enseignement { Id=3, GroupeId=3, MatiereId=1},
+                new Enseignement { Id=4, GroupeId=1, MatiereId=2},
+                new Enseignement { Id=5, GroupeId=2, MatiereId=2},
+                new Enseignement { Id=6, GroupeId=3, MatiereId=2}
+                );
+
             modelBuilder.Entity<Paiement>().HasData(
                 new Paiement { Id = 1, Nom = "Premier trimestre", DateDebut = DateTime.Parse("2021-10-01"), DateFin = DateTime.Parse("2021-12-31") },
                 new Paiement { Id = 2, Nom = "Deuxième trimestre", DateDebut = DateTime.Parse("2022-01-01"), DateFin = DateTime.Parse("2022-03-31") },

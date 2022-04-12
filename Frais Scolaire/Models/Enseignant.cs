@@ -23,4 +23,6 @@ public class Enseignant
     public int Salaire { get; set; }
     
     public ICollection<Matiere>? EnseignantMatieres { get; set; }
+
+    public string Fullname => $"{Nom}, {Prenom}";
 }

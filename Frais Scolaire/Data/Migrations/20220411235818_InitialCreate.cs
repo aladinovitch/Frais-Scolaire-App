@@ -296,8 +296,8 @@ namespace Frais_Scolaire.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "bbb8f327-e0d0-4dbb-a614-a0d97f812b63", 0, "11bc9b59-9b48-4504-a95c-d1c3e847e869", "manager@email.com", true, false, null, "MANAGER@EMAIL.COM", "MANAGER@EMAIL.COM", "AQAAAAEAACcQAAAAEMJi4FkMlINS6OgwR1sdBVrConz6QSaZyCBkdygkJIYnqWbUD79jRnJvcbTfbBcJgA==", null, false, "59799c03-964d-418e-9077-231e591a7f1f", false, "manager@email.com" },
-                    { "e6ad1f14-82e3-42f3-831c-a6364711082b", 0, "f4987f69-2ac0-42c8-bd13-779fbdf153af", "basic@email.com", true, false, null, "BASIC@EMAIL.COM", "BASIC@EMAIL.COM", "AQAAAAEAACcQAAAAELYcUepWbCMZ8gf0S4jjDKFrB969F4d6S7ZoQR6Qz81ZmNx6npkytMFojf9v2EhJrw==", null, false, "2d68a78c-d707-4535-862f-cd47bfc0b81f", false, "basic@email.com" }
+                    { "aba2b93c-5a7f-4832-bd7b-b70777d343ba", 0, "85d84b57-7937-4441-a36d-4d2332cf7d3a", "manager@email.com", true, false, null, "MANAGER@EMAIL.COM", "MANAGER@EMAIL.COM", "AQAAAAEAACcQAAAAEFfzPMFasxyVPM4i8LgrdKDR/QP/WbsxHFE4ZKuvQkFwhNSZxKQ74/mLaqHg24PL2A==", null, false, "b89ad217-754a-465a-9fff-e2459011407e", false, "manager@email.com" },
+                    { "e54498d7-4630-4ce5-8a16-316e58531b8d", 0, "99c8a220-e651-48ef-992f-b77b464d57c0", "basic@email.com", true, false, null, "BASIC@EMAIL.COM", "BASIC@EMAIL.COM", "AQAAAAEAACcQAAAAEKFucVI5w/PWkMHFPvJw3D+Jojh6IlTd0gWPOdufOEIAgiTWkn6CBxABaJHNjjiR6g==", null, false, "9fc05822-cc16-4622-8c47-ed988ea13ed3", false, "basic@email.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -334,8 +334,8 @@ namespace Frais_Scolaire.Data.Migrations
                 columns: new[] { "Id", "ClaimType", "ClaimValue", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Manager", "true", "bbb8f327-e0d0-4dbb-a614-a0d97f812b63" },
-                    { 2, "Basic user", "true", "e6ad1f14-82e3-42f3-831c-a6364711082b" }
+                    { 1, "Manager", "true", "aba2b93c-5a7f-4832-bd7b-b70777d343ba" },
+                    { 2, "Basic user", "true", "e54498d7-4630-4ce5-8a16-316e58531b8d" }
                 });
 
             migrationBuilder.InsertData(
@@ -379,6 +379,20 @@ namespace Frais_Scolaire.Data.Migrations
                     { 5, "Quartier bouloughine, Alger", "samimi@gmail.com", 4, "16/16/005", new DateTime(2016, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Smihi", "05 05 05 05", "Samiha", "Fille" },
                     { 6, "Cité des cinq, Belcourt", "fati.bb@gmail.com", 4, "16/15/006", new DateTime(2015, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Boufetoum", "05 06 06 06", "Fatima", "Fille" },
                     { 7, "Route des accacias, Médéa", "bousemar.sam@gmail.com", 4, "26/16/007", new DateTime(2016, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bousemar", "05 07 07 07", "Samira", "Fille" }
+                });
+
+            migrationBuilder.InsertData(
+                schema: "Frais_Scolaire",
+                table: "Enseignement",
+                columns: new[] { "Id", "GroupeId", "MatiereId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 2, 1 },
+                    { 3, 3, 1 },
+                    { 4, 1, 2 },
+                    { 5, 2, 2 },
+                    { 6, 3, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -572,12 +586,12 @@ namespace Frais_Scolaire.Data.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "bbb8f327-e0d0-4dbb-a614-a0d97f812b63");
+                keyValue: "aba2b93c-5a7f-4832-bd7b-b70777d343ba");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "e6ad1f14-82e3-42f3-831c-a6364711082b");
+                keyValue: "e54498d7-4630-4ce5-8a16-316e58531b8d");
         }
     }
 }

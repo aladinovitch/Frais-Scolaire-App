@@ -10,8 +10,38 @@
 				<li class="nav-item">
 					<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Activités</a>
+					<div class="dropdown-menu">
+						<a class="nav-link text-dark" asp-area="" asp-controller="Absences" asp-action="Index">Absences</a>
+						<a class="nav-link text-dark" asp-area="" asp-controller="Versements" asp-action="Index">Versements</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Personnes</a>
+					<div class="dropdown-menu">
+						<a class="nav-link text-dark" asp-area="" asp-controller="Eleves" asp-action="Index">Elèves</a>
+						<a class="nav-link text-dark" asp-area="" asp-controller="Groupes" asp-action="Index">Groupes</a>
+						<a class="nav-link text-dark" asp-area="" asp-controller="Enseignants" asp-action="Index">Enseignants</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Études</a>
+					<div class="dropdown-menu">
+						<a class="nav-link text-dark" asp-area="" asp-controller="Seances" asp-action="Index">Seances</a>
+						<a class="nav-link text-dark" asp-area="" asp-controller="Enseignements" asp-action="Index">Enseignements</a>
+						<a class="nav-link text-dark" asp-area="" asp-controller="Matieres" asp-action="Index">Matière</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Paramètres</a>
+					<div class="dropdown-menu">
+						<a class="nav-link text-dark" asp-area="" asp-controller="Paiements" asp-action="Index">Paiements</a>
+						<a class="nav-link text-dark" asp-area="" asp-controller="AnneeScolaires" asp-action="Index">Années scolaires</a>
+						<a class="nav-link text-dark" asp-area="" asp-controller="AnneeEtudes" asp-action="Index">Années d'études</a>
+						<div class="dropdown-divider"></div>
+						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+					</div>
 				</li>
 			</ul>
 			<partial name="_LoginPartial" />

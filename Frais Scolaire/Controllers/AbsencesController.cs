@@ -23,7 +23,7 @@ namespace Frais_Scolaire.Controllers
 
         // GET: Absences
         public async Task<IActionResult> Index() {
-            var applicationDbContext = _context.Absences.Include(a => a.Etudiant).Include(a => a.Seance);
+            var applicationDbContext = _context.Absences.Include(a => a.Eleve).Include(a => a.Seance);
             if (User.HasClaim(AppClaimType.Manager, "true"))
                 return View(await applicationDbContext.ToListAsync());
             return View("IndexReadonly", await applicationDbContext.ToListAsync());
@@ -37,7 +37,7 @@ namespace Frais_Scolaire.Controllers
             }
 
             var absence = await _context.Absences
-                .Include(a => a.Etudiant)
+                .Include(a => a.Eleve)
                 .Include(a => a.Seance)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (absence == null) {
@@ -50,7 +50,7 @@ namespace Frais_Scolaire.Controllers
         [Authorize(Policy = AppPolicyName.Management)]
         // GET: Absences/Create
         public IActionResult Create() {
-            ViewData["EtudiantId"] = new SelectList(_context.Eleves, "Id", "Fullname");
+            ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname");
             ViewData["SeanceId"] = new SelectList(_context.Seances, "Id", "Id");
             return View();
         }
@@ -60,13 +60,13 @@ namespace Frais_Scolaire.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Justification,EtudiantId,SeanceId")] Absence absence) {
+        public async Task<IActionResult> Create([Bind("Id,Justification,EleveId,SeanceId")] Absence absence) {
             if (ModelState.IsValid) {
                 _context.Add(absence);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EtudiantId"] = new SelectList(_context.Eleves, "Id", "Fullname", absence.EtudiantId);
+            ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname", absence.EleveId);
             ViewData["SeanceId"] = new SelectList(_context.Seances, "Id", "Id", absence.SeanceId);
             return View(absence);
         }
@@ -82,7 +82,7 @@ namespace Frais_Scolaire.Controllers
             if (absence == null) {
                 return NotFound();
             }
-            ViewData["EtudiantId"] = new SelectList(_context.Eleves, "Id", "Fullname", absence.EtudiantId);
+            ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname", absence.EleveId);
             ViewData["SeanceId"] = new SelectList(_context.Seances, "Id", "Id", absence.SeanceId);
             return View(absence);
         }
@@ -92,7 +92,7 @@ namespace Frais_Scolaire.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Justification,EtudiantId,SeanceId")] Absence absence) {
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Justification,EleveId,SeanceId")] Absence absence) {
             if (id != absence.Id) {
                 return NotFound();
             }
@@ -110,7 +110,7 @@ namespace Frais_Scolaire.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EtudiantId"] = new SelectList(_context.Eleves, "Id", "Fullname", absence.EtudiantId);
+            ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname", absence.EleveId);
             ViewData["SeanceId"] = new SelectList(_context.Seances, "Id", "Id", absence.SeanceId);
             return View(absence);
         }
@@ -123,7 +123,7 @@ namespace Frais_Scolaire.Controllers
             }
 
             var absence = await _context.Absences
-                .Include(a => a.Etudiant)
+                .Include(a => a.Eleve)
                 .Include(a => a.Seance)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (absence == null) {

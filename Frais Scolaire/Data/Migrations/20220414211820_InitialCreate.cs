@@ -217,15 +217,16 @@ namespace Frais_Scolaire.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EtudiantId = table.Column<int>(type: "int", nullable: false),
+                    Montant = table.Column<int>(type: "int", nullable: false),
+                    EleveId = table.Column<int>(type: "int", nullable: false),
                     PaiementId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Versement", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Versement_Eleve_EtudiantId",
-                        column: x => x.EtudiantId,
+                        name: "FK_Versement_Eleve_EleveId",
+                        column: x => x.EleveId,
                         principalSchema: "Frais_Scolaire",
                         principalTable: "Eleve",
                         principalColumn: "Id",
@@ -247,15 +248,15 @@ namespace Frais_Scolaire.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Justification = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EtudiantId = table.Column<int>(type: "int", nullable: false),
+                    EleveId = table.Column<int>(type: "int", nullable: false),
                     SeanceId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Absence", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Absence_Eleve_EtudiantId",
-                        column: x => x.EtudiantId,
+                        name: "FK_Absence_Eleve_EleveId",
+                        column: x => x.EleveId,
                         principalSchema: "Frais_Scolaire",
                         principalTable: "Eleve",
                         principalColumn: "Id",
@@ -296,8 +297,8 @@ namespace Frais_Scolaire.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "aba2b93c-5a7f-4832-bd7b-b70777d343ba", 0, "85d84b57-7937-4441-a36d-4d2332cf7d3a", "manager@email.com", true, false, null, "MANAGER@EMAIL.COM", "MANAGER@EMAIL.COM", "AQAAAAEAACcQAAAAEFfzPMFasxyVPM4i8LgrdKDR/QP/WbsxHFE4ZKuvQkFwhNSZxKQ74/mLaqHg24PL2A==", null, false, "b89ad217-754a-465a-9fff-e2459011407e", false, "manager@email.com" },
-                    { "e54498d7-4630-4ce5-8a16-316e58531b8d", 0, "99c8a220-e651-48ef-992f-b77b464d57c0", "basic@email.com", true, false, null, "BASIC@EMAIL.COM", "BASIC@EMAIL.COM", "AQAAAAEAACcQAAAAEKFucVI5w/PWkMHFPvJw3D+Jojh6IlTd0gWPOdufOEIAgiTWkn6CBxABaJHNjjiR6g==", null, false, "9fc05822-cc16-4622-8c47-ed988ea13ed3", false, "basic@email.com" }
+                    { "a3a2c66d-a9c9-4a64-a95a-a75b8b986de7", 0, "77d8fcc5-671d-4ef3-ab6d-e276b68cb8d3", "basic@email.com", true, false, null, "BASIC@EMAIL.COM", "BASIC@EMAIL.COM", "AQAAAAEAACcQAAAAEMIi7OKiWI2oarRGJ4RptoS7XkmwGBcFpBtu6jfxDpEmEL7NgxciZriw+e0V/xG8bg==", null, false, "daf00206-2021-45b7-aadd-d37d6edaaaea", false, "basic@email.com" },
+                    { "d36ba5b8-0356-45e6-9db5-3ded5e9e57fa", 0, "667a927e-41b2-4b2b-9510-2d95e05ae86e", "manager@email.com", true, false, null, "MANAGER@EMAIL.COM", "MANAGER@EMAIL.COM", "AQAAAAEAACcQAAAAEO6z034lAW18bDcwpwmxK3CtfjGAfGY/6BJ1CVxk9fog7LRkHv/yEobLr3dKaVDGnA==", null, false, "977be332-636e-47c7-b091-faceb8ccf106", false, "manager@email.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -334,8 +335,8 @@ namespace Frais_Scolaire.Data.Migrations
                 columns: new[] { "Id", "ClaimType", "ClaimValue", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Manager", "true", "aba2b93c-5a7f-4832-bd7b-b70777d343ba" },
-                    { 2, "Basic user", "true", "e54498d7-4630-4ce5-8a16-316e58531b8d" }
+                    { 1, "Manager", "true", "d36ba5b8-0356-45e6-9db5-3ded5e9e57fa" },
+                    { 2, "Basic user", "true", "a3a2c66d-a9c9-4a64-a95a-a75b8b986de7" }
                 });
 
             migrationBuilder.InsertData(
@@ -421,7 +422,7 @@ namespace Frais_Scolaire.Data.Migrations
             migrationBuilder.InsertData(
                 schema: "Frais_Scolaire",
                 table: "Absence",
-                columns: new[] { "Id", "EtudiantId", "Justification", "SeanceId" },
+                columns: new[] { "Id", "EleveId", "Justification", "SeanceId" },
                 values: new object[,]
                 {
                     { 1, 5, "Maladie", 1 },
@@ -434,37 +435,37 @@ namespace Frais_Scolaire.Data.Migrations
             migrationBuilder.InsertData(
                 schema: "Frais_Scolaire",
                 table: "Versement",
-                columns: new[] { "Id", "EtudiantId", "PaiementId" },
+                columns: new[] { "Id", "EleveId", "Montant", "PaiementId" },
                 values: new object[,]
                 {
-                    { 1, 1, 1 },
-                    { 2, 2, 1 },
-                    { 3, 3, 1 },
-                    { 4, 4, 1 },
-                    { 5, 5, 1 },
-                    { 6, 6, 1 },
-                    { 7, 7, 1 },
-                    { 8, 1, 2 },
-                    { 9, 2, 2 },
-                    { 10, 3, 2 },
-                    { 11, 4, 2 },
-                    { 12, 5, 2 },
-                    { 13, 6, 2 },
-                    { 14, 7, 2 },
-                    { 15, 1, 3 },
-                    { 16, 2, 3 },
-                    { 17, 3, 3 },
-                    { 18, 4, 3 },
-                    { 19, 5, 3 },
-                    { 20, 6, 3 },
-                    { 21, 7, 3 }
+                    { 1, 1, 45000, 1 },
+                    { 2, 2, 45000, 1 },
+                    { 3, 3, 45000, 1 },
+                    { 4, 4, 45000, 1 },
+                    { 5, 5, 45000, 1 },
+                    { 6, 6, 45000, 1 },
+                    { 7, 7, 45000, 1 },
+                    { 8, 1, 50000, 2 },
+                    { 9, 2, 50000, 2 },
+                    { 10, 3, 50000, 2 },
+                    { 11, 4, 50000, 2 },
+                    { 12, 5, 50000, 2 },
+                    { 13, 6, 50000, 2 },
+                    { 14, 7, 50000, 2 },
+                    { 15, 1, 55000, 3 },
+                    { 16, 2, 55000, 3 },
+                    { 17, 3, 55000, 3 },
+                    { 18, 4, 55000, 3 },
+                    { 19, 5, 55000, 3 },
+                    { 20, 6, 55000, 3 },
+                    { 21, 7, 55000, 3 }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Absence_EtudiantId",
+                name: "IX_Absence_EleveId",
                 schema: "Frais_Scolaire",
                 table: "Absence",
-                column: "EtudiantId");
+                column: "EleveId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Absence_SeanceId",
@@ -515,10 +516,10 @@ namespace Frais_Scolaire.Data.Migrations
                 column: "MatiereId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Versement_EtudiantId",
+                name: "IX_Versement_EleveId",
                 schema: "Frais_Scolaire",
                 table: "Versement",
-                column: "EtudiantId");
+                column: "EleveId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Versement_PaiementId",
@@ -586,12 +587,12 @@ namespace Frais_Scolaire.Data.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "aba2b93c-5a7f-4832-bd7b-b70777d343ba");
+                keyValue: "a3a2c66d-a9c9-4a64-a95a-a75b8b986de7");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "e54498d7-4630-4ce5-8a16-316e58531b8d");
+                keyValue: "d36ba5b8-0356-45e6-9db5-3ded5e9e57fa");
         }
     }
 }

@@ -7,10 +7,12 @@ public class Absence
     
     public string Justification { get; set; }
     [Required]
-    public int EtudiantId { get; set; }
+    [Display(Name = "Elève")]
+    public int EleveId { get; set; }
     [Required]
+    [Display(Name = "Séance")]
     public int SeanceId { get; set; }
     
     public Seance? Seance { get; set; }
-    public Eleve? Etudiant { get; set; }
+    public Eleve? Eleve { get; set; }
 }

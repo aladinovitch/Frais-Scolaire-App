@@ -26,8 +26,8 @@ public class Eleve
     
     public Groupe? Groupe { get; set; }
     
-    public ICollection<Absence>? EtudiantAbsences { get; set; }
-    public ICollection<Versement>? EtudiantVersements { get; set; }
+    public ICollection<Absence>? EleveAbsences { get; set; }
+    public ICollection<Versement>? EleveVersements { get; set; }
 
     public string Fullname => $"{Nom}, {Prenom}";
 }

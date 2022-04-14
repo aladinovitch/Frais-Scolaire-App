@@ -52,9 +52,9 @@ namespace Frais_Scolaire.Data
                 .HasName("PK_Eleve");
 
             modelBuilder.Entity<Eleve>().ToTable("Eleve", "Frais_Scolaire")
-                .HasMany(x => x.EtudiantAbsences).WithOne(x => x.Etudiant).HasForeignKey(x => new { x.EtudiantId });
+                .HasMany(x => x.EleveAbsences).WithOne(x => x.Eleve).HasForeignKey(x => new { x.EleveId });
             modelBuilder.Entity<Eleve>().ToTable("Eleve", "Frais_Scolaire")
-                .HasMany(x => x.EtudiantVersements).WithOne(x => x.Etudiant).HasForeignKey(x => new { x.EtudiantId });
+                .HasMany(x => x.EleveVersements).WithOne(x => x.Eleve).HasForeignKey(x => new { x.EleveId });
 
             modelBuilder.Entity<Seance>().ToTable("Seance", "Frais_Scolaire")
                 .HasKey(k => new { k.Id })
@@ -201,11 +201,11 @@ namespace Frais_Scolaire.Data
                 new Eleve { Id = 7, Matricule = "26/16/007", Prenom = "Samira", Nom = "Bousemar", Naissance = DateTime.Parse("2016-01-13"), Sexe = "Fille", Phone = "05 07 07 07", Email = "bousemar.sam@gmail.com", Adresse = "Route des accacias, Médéa", GroupeId = 4 });
 
             modelBuilder.Entity<Absence>().HasData(
-                new Absence { Id = 1, Justification = "Maladie", EtudiantId = 5, SeanceId = 1 },
-                new Absence { Id = 2, Justification = "Non justifiée", EtudiantId = 2, SeanceId = 2 },
-                new Absence { Id = 3, Justification = "Récupération", EtudiantId = 5, SeanceId = 2 },
-                new Absence { Id = 4, Justification = "Non justifiée", EtudiantId = 3, SeanceId = 2 },
-                new Absence { Id = 5, Justification = "Non justifiée", EtudiantId = 1, SeanceId = 3 }
+                new Absence { Id = 1, Justification = "Maladie", EleveId = 5, SeanceId = 1 },
+                new Absence { Id = 2, Justification = "Non justifiée", EleveId = 2, SeanceId = 2 },
+                new Absence { Id = 3, Justification = "Récupération", EleveId = 5, SeanceId = 2 },
+                new Absence { Id = 4, Justification = "Non justifiée", EleveId = 3, SeanceId = 2 },
+                new Absence { Id = 5, Justification = "Non justifiée", EleveId = 1, SeanceId = 3 }
                 );
 
             modelBuilder.Entity<AnneeScolaire>().HasData(
@@ -242,12 +242,12 @@ namespace Frais_Scolaire.Data
                 new Seance { Id = 15, Numero = 15, Date = DateTime.Parse("2022-01-15 15:00"), MatiereId = 3 });
 
             modelBuilder.Entity<Enseignement>().HasData(
-                new Enseignement { Id=1, GroupeId=1, MatiereId=1},
-                new Enseignement { Id=2, GroupeId=2, MatiereId=1},
-                new Enseignement { Id=3, GroupeId=3, MatiereId=1},
-                new Enseignement { Id=4, GroupeId=1, MatiereId=2},
-                new Enseignement { Id=5, GroupeId=2, MatiereId=2},
-                new Enseignement { Id=6, GroupeId=3, MatiereId=2}
+                new Enseignement { Id = 1, GroupeId = 1, MatiereId = 1 },
+                new Enseignement { Id = 2, GroupeId = 2, MatiereId = 1 },
+                new Enseignement { Id = 3, GroupeId = 3, MatiereId = 1 },
+                new Enseignement { Id = 4, GroupeId = 1, MatiereId = 2 },
+                new Enseignement { Id = 5, GroupeId = 2, MatiereId = 2 },
+                new Enseignement { Id = 6, GroupeId = 3, MatiereId = 2 }
                 );
 
             modelBuilder.Entity<Paiement>().HasData(
@@ -262,27 +262,27 @@ namespace Frais_Scolaire.Data
                 new Paiement { Id = 9, Nom = "Troisième trimestre", DateDebut = DateTime.Parse("2024-04-01"), DateFin = DateTime.Parse("2024-06-30") });
 
             modelBuilder.Entity<Versement>().HasData(
-                new Versement { Id = 1, EtudiantId = 1, PaiementId = 1 },
-                new Versement { Id = 2, EtudiantId = 2, PaiementId = 1 },
-                new Versement { Id = 3, EtudiantId = 3, PaiementId = 1 },
-                new Versement { Id = 4, EtudiantId = 4, PaiementId = 1 },
-                new Versement { Id = 5, EtudiantId = 5, PaiementId = 1 },
-                new Versement { Id = 6, EtudiantId = 6, PaiementId = 1 },
-                new Versement { Id = 7, EtudiantId = 7, PaiementId = 1 },
-                new Versement { Id = 8, EtudiantId = 1, PaiementId = 2 },
-                new Versement { Id = 9, EtudiantId = 2, PaiementId = 2 },
-                new Versement { Id = 10, EtudiantId = 3, PaiementId = 2 },
-                new Versement { Id = 11, EtudiantId = 4, PaiementId = 2 },
-                new Versement { Id = 12, EtudiantId = 5, PaiementId = 2 },
-                new Versement { Id = 13, EtudiantId = 6, PaiementId = 2 },
-                new Versement { Id = 14, EtudiantId = 7, PaiementId = 2 },
-                new Versement { Id = 15, EtudiantId = 1, PaiementId = 3 },
-                new Versement { Id = 16, EtudiantId = 2, PaiementId = 3 },
-                new Versement { Id = 17, EtudiantId = 3, PaiementId = 3 },
-                new Versement { Id = 18, EtudiantId = 4, PaiementId = 3 },
-                new Versement { Id = 19, EtudiantId = 5, PaiementId = 3 },
-                new Versement { Id = 20, EtudiantId = 6, PaiementId = 3 },
-                new Versement { Id = 21, EtudiantId = 7, PaiementId = 3 });
+                new Versement { Id = 1, EleveId = 1, PaiementId = 1, Montant = 45000 },
+                new Versement { Id = 2, EleveId = 2, PaiementId = 1, Montant = 45000 },
+                new Versement { Id = 3, EleveId = 3, PaiementId = 1, Montant = 45000 },
+                new Versement { Id = 4, EleveId = 4, PaiementId = 1, Montant = 45000 },
+                new Versement { Id = 5, EleveId = 5, PaiementId = 1, Montant = 45000 },
+                new Versement { Id = 6, EleveId = 6, PaiementId = 1, Montant = 45000 },
+                new Versement { Id = 7, EleveId = 7, PaiementId = 1, Montant = 45000 },
+                new Versement { Id = 8, EleveId = 1, PaiementId = 2, Montant = 50000 },
+                new Versement { Id = 9, EleveId = 2, PaiementId = 2, Montant = 50000 },
+                new Versement { Id = 10, EleveId = 3, PaiementId = 2, Montant = 50000 },
+                new Versement { Id = 11, EleveId = 4, PaiementId = 2, Montant = 50000 },
+                new Versement { Id = 12, EleveId = 5, PaiementId = 2, Montant = 50000 },
+                new Versement { Id = 13, EleveId = 6, PaiementId = 2, Montant = 50000 },
+                new Versement { Id = 14, EleveId = 7, PaiementId = 2, Montant = 50000 },
+                new Versement { Id = 15, EleveId = 1, PaiementId = 3, Montant = 55000 },
+                new Versement { Id = 16, EleveId = 2, PaiementId = 3, Montant = 55000 },
+                new Versement { Id = 17, EleveId = 3, PaiementId = 3, Montant = 55000 },
+                new Versement { Id = 18, EleveId = 4, PaiementId = 3, Montant = 55000 },
+                new Versement { Id = 19, EleveId = 5, PaiementId = 3, Montant = 55000 },
+                new Versement { Id = 20, EleveId = 6, PaiementId = 3, Montant = 55000 },
+                new Versement { Id = 21, EleveId = 7, PaiementId = 3, Montant = 55000 });
         }
     }
 }

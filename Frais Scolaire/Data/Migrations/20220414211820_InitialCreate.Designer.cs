@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Frais_Scolaire.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220411235818_InitialCreate")]
+    [Migration("20220414211820_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,7 @@ namespace Frais_Scolaire.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("EtudiantId")
+                    b.Property<int>("EleveId")
                         .HasColumnType("int");
 
                     b.Property<string>("Justification")
@@ -45,7 +45,7 @@ namespace Frais_Scolaire.Data.Migrations
                     b.HasKey("Id")
                         .HasName("PK_Absence");
 
-                    b.HasIndex("EtudiantId");
+                    b.HasIndex("EleveId");
 
                     b.HasIndex("SeanceId");
 
@@ -55,35 +55,35 @@ namespace Frais_Scolaire.Data.Migrations
                         new
                         {
                             Id = 1,
-                            EtudiantId = 5,
+                            EleveId = 5,
                             Justification = "Maladie",
                             SeanceId = 1
                         },
                         new
                         {
                             Id = 2,
-                            EtudiantId = 2,
+                            EleveId = 2,
                             Justification = "Non justifiée",
                             SeanceId = 2
                         },
                         new
                         {
                             Id = 3,
-                            EtudiantId = 5,
+                            EleveId = 5,
                             Justification = "Récupération",
                             SeanceId = 2
                         },
                         new
                         {
                             Id = 4,
-                            EtudiantId = 3,
+                            EleveId = 3,
                             Justification = "Non justifiée",
                             SeanceId = 2
                         },
                         new
                         {
                             Id = 5,
-                            EtudiantId = 1,
+                            EleveId = 1,
                             Justification = "Non justifiée",
                             SeanceId = 3
                         });
@@ -823,7 +823,10 @@ namespace Frais_Scolaire.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("EtudiantId")
+                    b.Property<int>("EleveId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Montant")
                         .HasColumnType("int");
 
                     b.Property<int>("PaiementId")
@@ -832,7 +835,7 @@ namespace Frais_Scolaire.Data.Migrations
                     b.HasKey("Id")
                         .HasName("PK_Versement");
 
-                    b.HasIndex("EtudiantId");
+                    b.HasIndex("EleveId");
 
                     b.HasIndex("PaiementId");
 
@@ -842,127 +845,148 @@ namespace Frais_Scolaire.Data.Migrations
                         new
                         {
                             Id = 1,
-                            EtudiantId = 1,
+                            EleveId = 1,
+                            Montant = 45000,
                             PaiementId = 1
                         },
                         new
                         {
                             Id = 2,
-                            EtudiantId = 2,
+                            EleveId = 2,
+                            Montant = 45000,
                             PaiementId = 1
                         },
                         new
                         {
                             Id = 3,
-                            EtudiantId = 3,
+                            EleveId = 3,
+                            Montant = 45000,
                             PaiementId = 1
                         },
                         new
                         {
                             Id = 4,
-                            EtudiantId = 4,
+                            EleveId = 4,
+                            Montant = 45000,
                             PaiementId = 1
                         },
                         new
                         {
                             Id = 5,
-                            EtudiantId = 5,
+                            EleveId = 5,
+                            Montant = 45000,
                             PaiementId = 1
                         },
                         new
                         {
                             Id = 6,
-                            EtudiantId = 6,
+                            EleveId = 6,
+                            Montant = 45000,
                             PaiementId = 1
                         },
                         new
                         {
                             Id = 7,
-                            EtudiantId = 7,
+                            EleveId = 7,
+                            Montant = 45000,
                             PaiementId = 1
                         },
                         new
                         {
                             Id = 8,
-                            EtudiantId = 1,
+                            EleveId = 1,
+                            Montant = 50000,
                             PaiementId = 2
                         },
                         new
                         {
                             Id = 9,
-                            EtudiantId = 2,
+                            EleveId = 2,
+                            Montant = 50000,
                             PaiementId = 2
                         },
                         new
                         {
                             Id = 10,
-                            EtudiantId = 3,
+                            EleveId = 3,
+                            Montant = 50000,
                             PaiementId = 2
                         },
                         new
                         {
                             Id = 11,
-                            EtudiantId = 4,
+                            EleveId = 4,
+                            Montant = 50000,
                             PaiementId = 2
                         },
                         new
                         {
                             Id = 12,
-                            EtudiantId = 5,
+                            EleveId = 5,
+                            Montant = 50000,
                             PaiementId = 2
                         },
                         new
                         {
                             Id = 13,
-                            EtudiantId = 6,
+                            EleveId = 6,
+                            Montant = 50000,
                             PaiementId = 2
                         },
                         new
                         {
                             Id = 14,
-                            EtudiantId = 7,
+                            EleveId = 7,
+                            Montant = 50000,
                             PaiementId = 2
                         },
                         new
                         {
                             Id = 15,
-                            EtudiantId = 1,
+                            EleveId = 1,
+                            Montant = 55000,
                             PaiementId = 3
                         },
                         new
                         {
                             Id = 16,
-                            EtudiantId = 2,
+                            EleveId = 2,
+                            Montant = 55000,
                             PaiementId = 3
                         },
                         new
                         {
                             Id = 17,
-                            EtudiantId = 3,
+                            EleveId = 3,
+                            Montant = 55000,
                             PaiementId = 3
                         },
                         new
                         {
                             Id = 18,
-                            EtudiantId = 4,
+                            EleveId = 4,
+                            Montant = 55000,
                             PaiementId = 3
                         },
                         new
                         {
                             Id = 19,
-                            EtudiantId = 5,
+                            EleveId = 5,
+                            Montant = 55000,
                             PaiementId = 3
                         },
                         new
                         {
                             Id = 20,
-                            EtudiantId = 6,
+                            EleveId = 6,
+                            Montant = 55000,
                             PaiementId = 3
                         },
                         new
                         {
                             Id = 21,
-                            EtudiantId = 7,
+                            EleveId = 7,
+                            Montant = 55000,
                             PaiementId = 3
                         });
                 });
@@ -1086,33 +1110,33 @@ namespace Frais_Scolaire.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "aba2b93c-5a7f-4832-bd7b-b70777d343ba",
+                            Id = "d36ba5b8-0356-45e6-9db5-3ded5e9e57fa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "85d84b57-7937-4441-a36d-4d2332cf7d3a",
+                            ConcurrencyStamp = "667a927e-41b2-4b2b-9510-2d95e05ae86e",
                             Email = "manager@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MANAGER@EMAIL.COM",
                             NormalizedUserName = "MANAGER@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFfzPMFasxyVPM4i8LgrdKDR/QP/WbsxHFE4ZKuvQkFwhNSZxKQ74/mLaqHg24PL2A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO6z034lAW18bDcwpwmxK3CtfjGAfGY/6BJ1CVxk9fog7LRkHv/yEobLr3dKaVDGnA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b89ad217-754a-465a-9fff-e2459011407e",
+                            SecurityStamp = "977be332-636e-47c7-b091-faceb8ccf106",
                             TwoFactorEnabled = false,
                             UserName = "manager@email.com"
                         },
                         new
                         {
-                            Id = "e54498d7-4630-4ce5-8a16-316e58531b8d",
+                            Id = "a3a2c66d-a9c9-4a64-a95a-a75b8b986de7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "99c8a220-e651-48ef-992f-b77b464d57c0",
+                            ConcurrencyStamp = "77d8fcc5-671d-4ef3-ab6d-e276b68cb8d3",
                             Email = "basic@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "BASIC@EMAIL.COM",
                             NormalizedUserName = "BASIC@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKFucVI5w/PWkMHFPvJw3D+Jojh6IlTd0gWPOdufOEIAgiTWkn6CBxABaJHNjjiR6g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMIi7OKiWI2oarRGJ4RptoS7XkmwGBcFpBtu6jfxDpEmEL7NgxciZriw+e0V/xG8bg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9fc05822-cc16-4622-8c47-ed988ea13ed3",
+                            SecurityStamp = "daf00206-2021-45b7-aadd-d37d6edaaaea",
                             TwoFactorEnabled = false,
                             UserName = "basic@email.com"
                         });
@@ -1148,14 +1172,14 @@ namespace Frais_Scolaire.Data.Migrations
                             Id = 1,
                             ClaimType = "Manager",
                             ClaimValue = "true",
-                            UserId = "aba2b93c-5a7f-4832-bd7b-b70777d343ba"
+                            UserId = "d36ba5b8-0356-45e6-9db5-3ded5e9e57fa"
                         },
                         new
                         {
                             Id = 2,
                             ClaimType = "Basic user",
                             ClaimValue = "true",
-                            UserId = "e54498d7-4630-4ce5-8a16-316e58531b8d"
+                            UserId = "a3a2c66d-a9c9-4a64-a95a-a75b8b986de7"
                         });
                 });
 
@@ -1221,9 +1245,9 @@ namespace Frais_Scolaire.Data.Migrations
 
             modelBuilder.Entity("Frais_Scolaire.Models.Absence", b =>
                 {
-                    b.HasOne("Frais_Scolaire.Models.Eleve", "Etudiant")
-                        .WithMany("EtudiantAbsences")
-                        .HasForeignKey("EtudiantId")
+                    b.HasOne("Frais_Scolaire.Models.Eleve", "Eleve")
+                        .WithMany("EleveAbsences")
+                        .HasForeignKey("EleveId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1233,7 +1257,7 @@ namespace Frais_Scolaire.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Etudiant");
+                    b.Navigation("Eleve");
 
                     b.Navigation("Seance");
                 });
@@ -1311,9 +1335,9 @@ namespace Frais_Scolaire.Data.Migrations
 
             modelBuilder.Entity("Frais_Scolaire.Models.Versement", b =>
                 {
-                    b.HasOne("Frais_Scolaire.Models.Eleve", "Etudiant")
-                        .WithMany("EtudiantVersements")
-                        .HasForeignKey("EtudiantId")
+                    b.HasOne("Frais_Scolaire.Models.Eleve", "Eleve")
+                        .WithMany("EleveVersements")
+                        .HasForeignKey("EleveId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1323,7 +1347,7 @@ namespace Frais_Scolaire.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Etudiant");
+                    b.Navigation("Eleve");
 
                     b.Navigation("Paiement");
                 });
@@ -1391,9 +1415,9 @@ namespace Frais_Scolaire.Data.Migrations
 
             modelBuilder.Entity("Frais_Scolaire.Models.Eleve", b =>
                 {
-                    b.Navigation("EtudiantAbsences");
+                    b.Navigation("EleveAbsences");
 
-                    b.Navigation("EtudiantVersements");
+                    b.Navigation("EleveVersements");
                 });
 
             modelBuilder.Entity("Frais_Scolaire.Models.Enseignant", b =>

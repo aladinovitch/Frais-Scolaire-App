@@ -28,7 +28,7 @@ namespace Frais_Scolaire.Controllers
         }
 
         // GET: Eleves/Details/5
-        public async Task<IActionResult> Details(int? id)
+        /*public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -40,6 +40,27 @@ namespace Frais_Scolaire.Controllers
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (eleve == null)
             {
+                return NotFound();
+            }
+
+            return View(eleve);
+        }*/
+
+        // GET: Eleves/Details/5
+        public async Task<IActionResult> Details(int? id) {
+            if (id == null) {
+                return NotFound();
+            }
+
+            var eleve = await _context.Eleves
+                .Include(e => e.Groupe)
+                .Include(e => e.EleveAbsences)
+                .ThenInclude(a => a.Seance)
+                .ThenInclude(s => s.Matiere)
+                .Include(e => e.EleveVersements)
+                .ThenInclude(v => v.Paiement)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (eleve == null) {
                 return NotFound();
             }
 

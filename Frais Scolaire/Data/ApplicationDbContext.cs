@@ -24,79 +24,18 @@ namespace Frais_Scolaire.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Enseignant>().ToTable("Enseignant", "Frais_Scolaire")
-                .HasKey(k => new { k.Id })
-                .HasName("PK_Enseignant");
-
-            modelBuilder.Entity<Enseignant>().ToTable("Enseignant", "Frais_Scolaire")
-                .HasMany(x => x.EnseignantMatieres).WithOne(x => x.Enseignant).HasForeignKey(x => new { x.EnseignantId });
-
-            modelBuilder.Entity<Groupe>().ToTable("Groupe", "Frais_Scolaire")
-                .HasKey(k => new { k.Id })
-                .HasName("PK_Groupe");
-
-            modelBuilder.Entity<Groupe>().ToTable("Groupe", "Frais_Scolaire")
-                .HasMany(x => x.GroupeEleves).WithOne(x => x.Groupe).HasForeignKey(x => new { x.GroupeId });
-            modelBuilder.Entity<Groupe>().ToTable("Groupe", "Frais_Scolaire")
-                .HasMany(x => x.GroupeEnseignements).WithOne(x => x.Groupe).HasForeignKey(x => new { x.GroupeId });
-
-            modelBuilder.Entity<AnneeEtude>().ToTable("AnneeEtude", "Frais_Scolaire")
-                .HasKey(k => new { k.Id })
-                .HasName("PK_AnneeEtude");
-
-            modelBuilder.Entity<AnneeEtude>().ToTable("AnneeEtude", "Frais_Scolaire")
-                .HasMany(x => x.AnneeEtudeGroupes).WithOne(x => x.AnneeEtude).HasForeignKey(x => new { x.AnneeEtudeId });
-
-            modelBuilder.Entity<Eleve>().ToTable("Eleve", "Frais_Scolaire")
-                .HasKey(k => new { k.Id })
-                .HasName("PK_Eleve");
-
-            modelBuilder.Entity<Eleve>().ToTable("Eleve", "Frais_Scolaire")
-                .HasMany(x => x.EleveAbsences).WithOne(x => x.Eleve).HasForeignKey(x => new { x.EleveId });
-            modelBuilder.Entity<Eleve>().ToTable("Eleve", "Frais_Scolaire")
-                .HasMany(x => x.EleveVersements).WithOne(x => x.Eleve).HasForeignKey(x => new { x.EleveId });
-
-            modelBuilder.Entity<Seance>().ToTable("Seance", "Frais_Scolaire")
-                .HasKey(k => new { k.Id })
-                .HasName("PK_Seance");
-
-            modelBuilder.Entity<Seance>().ToTable("Seance", "Frais_Scolaire")
-                .HasMany(x => x.SeanceAbsences).WithOne(x => x.Seance).HasForeignKey(x => new { x.SeanceId });
-
-            modelBuilder.Entity<Paiement>().ToTable("Paiement", "Frais_Scolaire")
-                .HasKey(k => new { k.Id })
-                .HasName("PK_Paiement");
-
-            modelBuilder.Entity<Paiement>().ToTable("Paiement", "Frais_Scolaire")
-                .HasMany(x => x.PaiementVersements).WithOne(x => x.Paiement).HasForeignKey(x => new { x.PaiementId });
-
-            modelBuilder.Entity<Matiere>().ToTable("Matiere", "Frais_Scolaire")
-                .HasKey(k => new { k.Id })
-                .HasName("PK_Matiere");
-
-            modelBuilder.Entity<Matiere>().ToTable("Matiere", "Frais_Scolaire")
-                .HasMany(x => x.MatiereSeances).WithOne(x => x.Matiere).HasForeignKey(x => new { x.MatiereId });
-            modelBuilder.Entity<Matiere>().ToTable("Matiere", "Frais_Scolaire")
-                .HasMany(x => x.MatiereEnseignements).WithOne(x => x.Matiere).HasForeignKey(x => new { x.MatiereId });
-
-            modelBuilder.Entity<AnneeScolaire>().ToTable("AnneeScolaire", "Frais_Scolaire")
-                .HasKey(k => new { k.Id })
-                .HasName("PK_AnneeScolaire");
-
-            modelBuilder.Entity<AnneeScolaire>().ToTable("AnneeScolaire", "Frais_Scolaire")
-                .HasMany(x => x.AnneeScolaireGroupes).WithOne(x => x.AnneeScolaire).HasForeignKey(x => new { x.AnneeScolaireId });
-
-            modelBuilder.Entity<Absence>().ToTable("Absence", "Frais_Scolaire")
-                .HasKey(k => new { k.Id })
-                .HasName("PK_Absence");
-
-            modelBuilder.Entity<Versement>().ToTable("Versement", "Frais_Scolaire")
-                .HasKey(k => new { k.Id })
-                .HasName("PK_Versement");
-
-            modelBuilder.Entity<Enseignement>().ToTable("Enseignement", "Frais_Scolaire")
-                .HasKey(k => new { k.Id })
-                .HasName("PK_Enseignement");
+            modelBuilder.HasDefaultSchema("FraisScolaire");
+            modelBuilder.Entity<Enseignant>().HasMany(x => x.EnseignantMatieres).WithOne(x => x.Enseignant).HasForeignKey(x => x.EnseignantId);
+            modelBuilder.Entity<Groupe>().HasMany(x => x.GroupeEleves).WithOne(x => x.Groupe).HasForeignKey(x => x.GroupeId);
+            modelBuilder.Entity<Groupe>().HasMany(x => x.GroupeEnseignements).WithOne(x => x.Groupe).HasForeignKey(x => x.GroupeId);
+            modelBuilder.Entity<AnneeEtude>().HasMany(x => x.AnneeEtudeGroupes).WithOne(x => x.AnneeEtude).HasForeignKey(x => x.AnneeEtudeId);
+            modelBuilder.Entity<Eleve>().HasMany(x => x.EleveAbsences).WithOne(x => x.Eleve).HasForeignKey(x => x.EleveId);
+            modelBuilder.Entity<Eleve>().HasMany(x => x.EleveVersements).WithOne(x => x.Eleve).HasForeignKey(x => x.EleveId);
+            modelBuilder.Entity<Seance>().HasMany(x => x.SeanceAbsences).WithOne(x => x.Seance).HasForeignKey(x => x.SeanceId);
+            modelBuilder.Entity<Paiement>().HasMany(x => x.PaiementVersements).WithOne(x => x.Paiement).HasForeignKey(x => x.PaiementId);
+            modelBuilder.Entity<Matiere>().HasMany(x => x.MatiereSeances).WithOne(x => x.Matiere).HasForeignKey(x => x.MatiereId);
+            modelBuilder.Entity<Matiere>().HasMany(x => x.MatiereEnseignements).WithOne(x => x.Matiere).HasForeignKey(x => x.MatiereId);
+            modelBuilder.Entity<AnneeScolaire>().HasMany(x => x.AnneeScolaireGroupes).WithOne(x => x.AnneeScolaire).HasForeignKey(x => x.AnneeScolaireId);
 
             SeedUsers(modelBuilder);
             SeedData(modelBuilder);

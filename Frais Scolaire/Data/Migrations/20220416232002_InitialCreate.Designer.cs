@@ -12,14 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Frais_Scolaire.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220414211820_InitialCreate")]
+    [Migration("20220416232002_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasDefaultSchema("FraisScolaire")
+                .HasAnnotation("ProductVersion", "6.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -42,14 +43,13 @@ namespace Frais_Scolaire.Data.Migrations
                     b.Property<int>("SeanceId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Absence");
+                    b.HasKey("Id");
 
                     b.HasIndex("EleveId");
 
                     b.HasIndex("SeanceId");
 
-                    b.ToTable("Absence", "Frais_Scolaire");
+                    b.ToTable("Absences", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -101,10 +101,9 @@ namespace Frais_Scolaire.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("PK_AnneeEtude");
+                    b.HasKey("Id");
 
-                    b.ToTable("AnneeEtude", "Frais_Scolaire");
+                    b.ToTable("AnneeEtudes", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -136,10 +135,9 @@ namespace Frais_Scolaire.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("PK_AnneeScolaire");
+                    b.HasKey("Id");
 
-                    b.ToTable("AnneeScolaire", "Frais_Scolaire");
+                    b.ToTable("AnneeScolaires", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -201,12 +199,11 @@ namespace Frais_Scolaire.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Eleve");
+                    b.HasKey("Id");
 
                     b.HasIndex("GroupeId");
 
-                    b.ToTable("Eleve", "Frais_Scolaire");
+                    b.ToTable("Eleves", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -341,10 +338,9 @@ namespace Frais_Scolaire.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Enseignant");
+                    b.HasKey("Id");
 
-                    b.ToTable("Enseignant", "Frais_Scolaire");
+                    b.ToTable("Enseignants", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -411,14 +407,13 @@ namespace Frais_Scolaire.Data.Migrations
                     b.Property<int>("MatiereId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Enseignement");
+                    b.HasKey("Id");
 
                     b.HasIndex("GroupeId");
 
                     b.HasIndex("MatiereId");
 
-                    b.ToTable("Enseignement", "Frais_Scolaire");
+                    b.ToTable("Enseignements", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -477,14 +472,13 @@ namespace Frais_Scolaire.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Groupe");
+                    b.HasKey("Id");
 
                     b.HasIndex("AnneeEtudeId");
 
                     b.HasIndex("AnneeScolaireId");
 
-                    b.ToTable("Groupe", "Frais_Scolaire");
+                    b.ToTable("Groupes", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -560,12 +554,11 @@ namespace Frais_Scolaire.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Matiere");
+                    b.HasKey("Id");
 
                     b.HasIndex("EnseignantId");
 
-                    b.ToTable("Matiere", "Frais_Scolaire");
+                    b.ToTable("Matieres", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -612,10 +605,9 @@ namespace Frais_Scolaire.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Paiement");
+                    b.HasKey("Id");
 
-                    b.ToTable("Paiement", "Frais_Scolaire");
+                    b.ToTable("Paiements", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -700,12 +692,11 @@ namespace Frais_Scolaire.Data.Migrations
                     b.Property<int>("Numero")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Seance");
+                    b.HasKey("Id");
 
                     b.HasIndex("MatiereId");
 
-                    b.ToTable("Seance", "Frais_Scolaire");
+                    b.ToTable("Seances", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -832,14 +823,13 @@ namespace Frais_Scolaire.Data.Migrations
                     b.Property<int>("PaiementId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Versement");
+                    b.HasKey("Id");
 
                     b.HasIndex("EleveId");
 
                     b.HasIndex("PaiementId");
 
-                    b.ToTable("Versement", "Frais_Scolaire");
+                    b.ToTable("Versements", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -1015,7 +1005,7 @@ namespace Frais_Scolaire.Data.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("AspNetRoles", "FraisScolaire");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1040,7 +1030,7 @@ namespace Frais_Scolaire.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("AspNetRoleClaims", "FraisScolaire");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
@@ -1105,38 +1095,38 @@ namespace Frais_Scolaire.Data.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("AspNetUsers", "FraisScolaire");
 
                     b.HasData(
                         new
                         {
-                            Id = "d36ba5b8-0356-45e6-9db5-3ded5e9e57fa",
+                            Id = "fb0437ef-820d-4e15-a77d-51fdc30d84b7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "667a927e-41b2-4b2b-9510-2d95e05ae86e",
+                            ConcurrencyStamp = "1dadd3c9-e163-4ab0-82ec-afcdb040383d",
                             Email = "manager@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MANAGER@EMAIL.COM",
                             NormalizedUserName = "MANAGER@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEO6z034lAW18bDcwpwmxK3CtfjGAfGY/6BJ1CVxk9fog7LRkHv/yEobLr3dKaVDGnA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENzHEJaqy3M4o1LAud51Wc5lWaMdWLUMvL3dA3jhhkXLlt/fAUGV8jX2xqe00jotew==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "977be332-636e-47c7-b091-faceb8ccf106",
+                            SecurityStamp = "0d904624-b1fb-4912-8da9-7b4429bca1ac",
                             TwoFactorEnabled = false,
                             UserName = "manager@email.com"
                         },
                         new
                         {
-                            Id = "a3a2c66d-a9c9-4a64-a95a-a75b8b986de7",
+                            Id = "2e84516a-3697-4c22-b6f3-7435f95a44bf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "77d8fcc5-671d-4ef3-ab6d-e276b68cb8d3",
+                            ConcurrencyStamp = "a426d6c0-47b4-4caa-aaac-ded5cbf67ce2",
                             Email = "basic@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "BASIC@EMAIL.COM",
                             NormalizedUserName = "BASIC@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMIi7OKiWI2oarRGJ4RptoS7XkmwGBcFpBtu6jfxDpEmEL7NgxciZriw+e0V/xG8bg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGO4WczZD2+Na290ZteAMTnByv6H1myE+4FMxwwiY7L34fhrzI9cIbNbJfS5RCBRVA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "daf00206-2021-45b7-aadd-d37d6edaaaea",
+                            SecurityStamp = "e663e86f-bc42-454a-b4b1-e93361fbfa07",
                             TwoFactorEnabled = false,
                             UserName = "basic@email.com"
                         });
@@ -1164,7 +1154,7 @@ namespace Frais_Scolaire.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("AspNetUserClaims", "FraisScolaire");
 
                     b.HasData(
                         new
@@ -1172,14 +1162,14 @@ namespace Frais_Scolaire.Data.Migrations
                             Id = 1,
                             ClaimType = "Manager",
                             ClaimValue = "true",
-                            UserId = "d36ba5b8-0356-45e6-9db5-3ded5e9e57fa"
+                            UserId = "fb0437ef-820d-4e15-a77d-51fdc30d84b7"
                         },
                         new
                         {
                             Id = 2,
                             ClaimType = "Basic user",
                             ClaimValue = "true",
-                            UserId = "a3a2c66d-a9c9-4a64-a95a-a75b8b986de7"
+                            UserId = "2e84516a-3697-4c22-b6f3-7435f95a44bf"
                         });
                 });
 
@@ -1204,7 +1194,7 @@ namespace Frais_Scolaire.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("AspNetUserLogins", "FraisScolaire");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -1219,7 +1209,7 @@ namespace Frais_Scolaire.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("AspNetUserRoles", "FraisScolaire");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -1240,7 +1230,7 @@ namespace Frais_Scolaire.Data.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("AspNetUserTokens", "FraisScolaire");
                 });
 
             modelBuilder.Entity("Frais_Scolaire.Models.Absence", b =>

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Frais_Scolaire.Data;
 using Frais_Scolaire.Models;
+using Frais_Scolaire.ViewModel;
 
 namespace Frais_Scolaire.Controllers
 {
@@ -50,8 +51,17 @@ namespace Frais_Scolaire.Controllers
         // GET: Versements/Create
         public IActionResult Create()
         {
+            var versementQuery = _context.Versements
+                .Include(v => v.Eleve)
+                .Include(v => v.Paiement)
+                .Select(v => new VersementVM(v.Eleve, v.Paiement))
+                .ToList();
+            
             ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname");
-            ViewData["PaiementId"] = new SelectList(_context.Paiements, "Id", "Nom");
+            ViewData["PaiementId"] = new SelectList(versementQuery, "Paiement.Id", "DateRange");
+
+            //ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname");
+            //ViewData["PaiementId"] = new SelectList(_context.Paiements, "Id", "DateRange");
             return View();
         }
 
@@ -69,7 +79,7 @@ namespace Frais_Scolaire.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname", versement.EleveId);
-            ViewData["PaiementId"] = new SelectList(_context.Paiements, "Id", "Nom", versement.PaiementId);
+            ViewData["PaiementId"] = new SelectList(_context.Paiements, "Id", "DateRange", versement.PaiementId);
             return View(versement);
         }
 
@@ -87,7 +97,7 @@ namespace Frais_Scolaire.Controllers
                 return NotFound();
             }
             ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname", versement.EleveId);
-            ViewData["PaiementId"] = new SelectList(_context.Paiements, "Id", "Nom", versement.PaiementId);
+            ViewData["PaiementId"] = new SelectList(_context.Paiements, "Id", "DateRange", versement.PaiementId);
             return View(versement);
         }
 
@@ -124,7 +134,7 @@ namespace Frais_Scolaire.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname", versement.EleveId);
-            ViewData["PaiementId"] = new SelectList(_context.Paiements, "Id", "Nom", versement.PaiementId);
+            ViewData["PaiementId"] = new SelectList(_context.Paiements, "Id", "DateRange", versement.PaiementId);
             return View(versement);
         }
 

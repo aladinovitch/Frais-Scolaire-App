@@ -13,4 +13,6 @@ public class Paiement
     public DateTime DateFin { get; set; }
 
     public ICollection<Versement>? PaiementVersements { get; set; }
+
+    public string DateRange => $"{Nom} : Du {DateDebut.ToShortDateString()} au {DateFin.ToShortDateString()}";
 }

@@ -24,7 +24,7 @@ namespace Frais_Scolaire.Controllers
         // GET: Versements
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Versements.Include(v => v.Eleve).Include(v => v.Paiement);
+            var applicationDbContext = _context.Versements.Include(v => v.Eleve).Include(v => v.Trimestre);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -38,7 +38,7 @@ namespace Frais_Scolaire.Controllers
 
             var versement = await _context.Versements
                 .Include(v => v.Eleve)
-                .Include(v => v.Paiement)
+                .Include(v => v.Trimestre)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (versement == null)
             {
@@ -53,8 +53,8 @@ namespace Frais_Scolaire.Controllers
         {
             var versementQuery = _context.Versements
                 .Include(v => v.Eleve)
-                .Include(v => v.Paiement)
-                .Select(v => new VersementVM(v.Eleve, v.Paiement))
+                .Include(v => v.Trimestre)
+                .Select(v => new VersementVM(v.Eleve, v.Trimestre))
                 .ToList();
             
             ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname");
@@ -79,7 +79,7 @@ namespace Frais_Scolaire.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname", versement.EleveId);
-            ViewData["PaiementId"] = new SelectList(_context.Paiements, "Id", "DateRange", versement.PaiementId);
+            ViewData["PaiementId"] = new SelectList(_context.Trimestres, "Id", "DateRange", versement.TrimestreId);
             return View(versement);
         }
 
@@ -97,7 +97,7 @@ namespace Frais_Scolaire.Controllers
                 return NotFound();
             }
             ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname", versement.EleveId);
-            ViewData["PaiementId"] = new SelectList(_context.Paiements, "Id", "DateRange", versement.PaiementId);
+            ViewData["PaiementId"] = new SelectList(_context.Trimestres, "Id", "DateRange", versement.TrimestreId);
             return View(versement);
         }
 
@@ -134,7 +134,7 @@ namespace Frais_Scolaire.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EleveId"] = new SelectList(_context.Eleves, "Id", "Fullname", versement.EleveId);
-            ViewData["PaiementId"] = new SelectList(_context.Paiements, "Id", "DateRange", versement.PaiementId);
+            ViewData["PaiementId"] = new SelectList(_context.Trimestres, "Id", "DateRange", versement.TrimestreId);
             return View(versement);
         }
 
@@ -148,7 +148,7 @@ namespace Frais_Scolaire.Controllers
 
             var versement = await _context.Versements
                 .Include(v => v.Eleve)
-                .Include(v => v.Paiement)
+                .Include(v => v.Trimestre)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (versement == null)
             {

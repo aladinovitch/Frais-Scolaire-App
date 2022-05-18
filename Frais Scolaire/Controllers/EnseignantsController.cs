@@ -27,6 +27,24 @@ namespace Frais_Scolaire.Controllers
         }
 
         // GET: Enseignants/Details/5
+        /*public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var enseignant = await _context.Enseignants
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (enseignant == null)
+            {
+                return NotFound();
+            }
+
+            return View(enseignant);
+        }*/
+        
+        // GET: Enseignants/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,6 +53,20 @@ namespace Frais_Scolaire.Controllers
             }
 
             var enseignant = await _context.Enseignants
+                .Include(x => x.EnseignantMatieres)
+                .ThenInclude(x => x.MatiereEnseignements)
+                .ThenInclude(x => x.Groupe)
+                .ThenInclude(x => x.GroupeEleves)
+
+                .Include(x => x.EnseignantMatieres)
+                .ThenInclude(x => x.MatiereEnseignements)
+                .ThenInclude(x => x.Groupe)
+                .ThenInclude(x => x.AnneeEtude)
+
+                .Include(x => x.EnseignantMatieres)
+                .ThenInclude(x => x.MatiereEnseignements)
+                .ThenInclude(x => x.Groupe)
+                .ThenInclude(x => x.AnneeScolaire)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (enseignant == null)
             {

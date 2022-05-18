@@ -58,7 +58,7 @@ namespace Frais_Scolaire.Controllers
                 .ThenInclude(a => a.Seance)
                 .ThenInclude(s => s.Matiere)
                 .Include(e => e.EleveVersements)
-                .ThenInclude(v => v.Paiement)
+                .ThenInclude(v => v.Trimestre)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (eleve == null) {
                 return NotFound();

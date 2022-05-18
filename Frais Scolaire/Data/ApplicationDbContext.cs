@@ -15,7 +15,7 @@ namespace Frais_Scolaire.Data
         public DbSet<AnneeEtude> AnneeEtudes { get; set; }
         public DbSet<Eleve> Eleves { get; set; }
         public DbSet<Seance> Seances { get; set; }
-        public DbSet<Paiement> Paiements { get; set; }
+        public DbSet<Trimestre> Trimestres { get; set; }
         public DbSet<Matiere> Matieres { get; set; }
         public DbSet<AnneeScolaire> AnneeScolaires { get; set; }
         public DbSet<Absence> Absences { get; set; }
@@ -32,7 +32,7 @@ namespace Frais_Scolaire.Data
             modelBuilder.Entity<Eleve>().HasMany(x => x.EleveAbsences).WithOne(x => x.Eleve).HasForeignKey(x => x.EleveId);
             modelBuilder.Entity<Eleve>().HasMany(x => x.EleveVersements).WithOne(x => x.Eleve).HasForeignKey(x => x.EleveId);
             modelBuilder.Entity<Seance>().HasMany(x => x.SeanceAbsences).WithOne(x => x.Seance).HasForeignKey(x => x.SeanceId);
-            modelBuilder.Entity<Paiement>().HasMany(x => x.PaiementVersements).WithOne(x => x.Paiement).HasForeignKey(x => x.PaiementId);
+            modelBuilder.Entity<Trimestre>().HasMany(x => x.TrimestreVersements).WithOne(x => x.Trimestre).HasForeignKey(x => x.TrimestreId);
             modelBuilder.Entity<Matiere>().HasMany(x => x.MatiereSeances).WithOne(x => x.Matiere).HasForeignKey(x => x.MatiereId);
             modelBuilder.Entity<Matiere>().HasMany(x => x.MatiereEnseignements).WithOne(x => x.Matiere).HasForeignKey(x => x.MatiereId);
             modelBuilder.Entity<AnneeScolaire>().HasMany(x => x.AnneeScolaireGroupes).WithOne(x => x.AnneeScolaire).HasForeignKey(x => x.AnneeScolaireId);
@@ -189,39 +189,39 @@ namespace Frais_Scolaire.Data
                 new Enseignement { Id = 6, GroupeId = 3, MatiereId = 2 }
                 );
 
-            modelBuilder.Entity<Paiement>().HasData(
-                new Paiement { Id = 1, Nom = "Premier trimestre", DateDebut = DateTime.Parse("2021-10-01"), DateFin = DateTime.Parse("2021-12-31") },
-                new Paiement { Id = 2, Nom = "Deuxième trimestre", DateDebut = DateTime.Parse("2022-01-01"), DateFin = DateTime.Parse("2022-03-31") },
-                new Paiement { Id = 3, Nom = "Troisième trimestre", DateDebut = DateTime.Parse("2022-04-01"), DateFin = DateTime.Parse("2022-06-30") },
-                new Paiement { Id = 4, Nom = "Premier trimestre", DateDebut = DateTime.Parse("2022-10-01"), DateFin = DateTime.Parse("2022-12-31") },
-                new Paiement { Id = 5, Nom = "Deuxième trimestre", DateDebut = DateTime.Parse("2023-01-01"), DateFin = DateTime.Parse("2023-03-31") },
-                new Paiement { Id = 6, Nom = "Troisième trimestre", DateDebut = DateTime.Parse("2023-04-01"), DateFin = DateTime.Parse("2023-06-30") },
-                new Paiement { Id = 7, Nom = "Premier trimestre", DateDebut = DateTime.Parse("2023-10-01"), DateFin = DateTime.Parse("2023-12-31") },
-                new Paiement { Id = 8, Nom = "Deuxième trimestre", DateDebut = DateTime.Parse("2024-01-01"), DateFin = DateTime.Parse("2024-03-31") },
-                new Paiement { Id = 9, Nom = "Troisième trimestre", DateDebut = DateTime.Parse("2024-04-01"), DateFin = DateTime.Parse("2024-06-30") });
+            modelBuilder.Entity<Trimestre>().HasData(
+                new Trimestre { Id = 1, Nom = "Premier trimestre", DateDebut = DateTime.Parse("2021-10-01"), DateFin = DateTime.Parse("2021-12-31") },
+                new Trimestre { Id = 2, Nom = "Deuxième trimestre", DateDebut = DateTime.Parse("2022-01-01"), DateFin = DateTime.Parse("2022-03-31") },
+                new Trimestre { Id = 3, Nom = "Troisième trimestre", DateDebut = DateTime.Parse("2022-04-01"), DateFin = DateTime.Parse("2022-06-30") },
+                new Trimestre { Id = 4, Nom = "Premier trimestre", DateDebut = DateTime.Parse("2022-10-01"), DateFin = DateTime.Parse("2022-12-31") },
+                new Trimestre { Id = 5, Nom = "Deuxième trimestre", DateDebut = DateTime.Parse("2023-01-01"), DateFin = DateTime.Parse("2023-03-31") },
+                new Trimestre { Id = 6, Nom = "Troisième trimestre", DateDebut = DateTime.Parse("2023-04-01"), DateFin = DateTime.Parse("2023-06-30") },
+                new Trimestre { Id = 7, Nom = "Premier trimestre", DateDebut = DateTime.Parse("2023-10-01"), DateFin = DateTime.Parse("2023-12-31") },
+                new Trimestre { Id = 8, Nom = "Deuxième trimestre", DateDebut = DateTime.Parse("2024-01-01"), DateFin = DateTime.Parse("2024-03-31") },
+                new Trimestre { Id = 9, Nom = "Troisième trimestre", DateDebut = DateTime.Parse("2024-04-01"), DateFin = DateTime.Parse("2024-06-30") });
 
             modelBuilder.Entity<Versement>().HasData(
-                new Versement { Id = 1, EleveId = 1, PaiementId = 1, Montant = 45000 },
-                new Versement { Id = 2, EleveId = 2, PaiementId = 1, Montant = 45000 },
-                new Versement { Id = 3, EleveId = 3, PaiementId = 1, Montant = 45000 },
-                new Versement { Id = 4, EleveId = 4, PaiementId = 1, Montant = 45000 },
-                new Versement { Id = 5, EleveId = 5, PaiementId = 1, Montant = 45000 },
-                new Versement { Id = 6, EleveId = 6, PaiementId = 1, Montant = 45000 },
-                new Versement { Id = 7, EleveId = 7, PaiementId = 1, Montant = 45000 },
-                new Versement { Id = 8, EleveId = 1, PaiementId = 2, Montant = 50000 },
-                new Versement { Id = 9, EleveId = 2, PaiementId = 2, Montant = 50000 },
-                new Versement { Id = 10, EleveId = 3, PaiementId = 2, Montant = 50000 },
-                new Versement { Id = 11, EleveId = 4, PaiementId = 2, Montant = 50000 },
-                new Versement { Id = 12, EleveId = 5, PaiementId = 2, Montant = 50000 },
-                new Versement { Id = 13, EleveId = 6, PaiementId = 2, Montant = 50000 },
-                new Versement { Id = 14, EleveId = 7, PaiementId = 2, Montant = 50000 },
-                new Versement { Id = 15, EleveId = 1, PaiementId = 3, Montant = 55000 },
-                new Versement { Id = 16, EleveId = 2, PaiementId = 3, Montant = 55000 },
-                new Versement { Id = 17, EleveId = 3, PaiementId = 3, Montant = 55000 },
-                new Versement { Id = 18, EleveId = 4, PaiementId = 3, Montant = 55000 },
-                new Versement { Id = 19, EleveId = 5, PaiementId = 3, Montant = 55000 },
-                new Versement { Id = 20, EleveId = 6, PaiementId = 3, Montant = 55000 },
-                new Versement { Id = 21, EleveId = 7, PaiementId = 3, Montant = 55000 });
+                new Versement { Id = 1, EleveId = 1, TrimestreId = 1, Montant = 45000 },
+                new Versement { Id = 2, EleveId = 2, TrimestreId = 1, Montant = 45000 },
+                new Versement { Id = 3, EleveId = 3, TrimestreId = 1, Montant = 45000 },
+                new Versement { Id = 4, EleveId = 4, TrimestreId = 1, Montant = 45000 },
+                new Versement { Id = 5, EleveId = 5, TrimestreId = 1, Montant = 45000 },
+                new Versement { Id = 6, EleveId = 6, TrimestreId = 1, Montant = 45000 },
+                new Versement { Id = 7, EleveId = 7, TrimestreId = 1, Montant = 45000 },
+                new Versement { Id = 8, EleveId = 1, TrimestreId = 2, Montant = 50000 },
+                new Versement { Id = 9, EleveId = 2, TrimestreId = 2, Montant = 50000 },
+                new Versement { Id = 10, EleveId = 3, TrimestreId = 2, Montant = 50000 },
+                new Versement { Id = 11, EleveId = 4, TrimestreId = 2, Montant = 50000 },
+                new Versement { Id = 12, EleveId = 5, TrimestreId = 2, Montant = 50000 },
+                new Versement { Id = 13, EleveId = 6, TrimestreId = 2, Montant = 50000 },
+                new Versement { Id = 14, EleveId = 7, TrimestreId = 2, Montant = 50000 },
+                new Versement { Id = 15, EleveId = 1, TrimestreId = 3, Montant = 55000 },
+                new Versement { Id = 16, EleveId = 2, TrimestreId = 3, Montant = 55000 },
+                new Versement { Id = 17, EleveId = 3, TrimestreId = 3, Montant = 55000 },
+                new Versement { Id = 18, EleveId = 4, TrimestreId = 3, Montant = 55000 },
+                new Versement { Id = 19, EleveId = 5, TrimestreId = 3, Montant = 55000 },
+                new Versement { Id = 20, EleveId = 6, TrimestreId = 3, Montant = 55000 },
+                new Versement { Id = 21, EleveId = 7, TrimestreId = 3, Montant = 55000 });
         }
     }
 }

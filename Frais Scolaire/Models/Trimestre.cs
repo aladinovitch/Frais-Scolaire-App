@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace Frais_Scolaire.Models;
-public class Paiement
+public class Trimestre
 {
     public int Id { get; set; }
     
@@ -12,7 +12,7 @@ public class Paiement
     [Required]
     public DateTime DateFin { get; set; }
 
-    public ICollection<Versement>? PaiementVersements { get; set; }
+    public ICollection<Versement>? TrimestreVersements { get; set; }
 
     public string DateRange => $"{Nom} : Du {DateDebut.ToShortDateString()} au {DateFin.ToShortDateString()}";
 }

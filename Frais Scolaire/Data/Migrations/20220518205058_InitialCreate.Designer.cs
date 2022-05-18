@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Frais_Scolaire.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220416232002_InitialCreate")]
+    [Migration("20220518205058_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace Frais_Scolaire.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("FraisScolaire")
-                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -587,94 +587,6 @@ namespace Frais_Scolaire.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Frais_Scolaire.Models.Paiement", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("DateDebut")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateFin")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Nom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Paiements", "FraisScolaire");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateDebut = new DateTime(2021, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateFin = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Premier trimestre"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateDebut = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateFin = new DateTime(2022, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Deuxième trimestre"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DateDebut = new DateTime(2022, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateFin = new DateTime(2022, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Troisième trimestre"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DateDebut = new DateTime(2022, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateFin = new DateTime(2022, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Premier trimestre"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DateDebut = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateFin = new DateTime(2023, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Deuxième trimestre"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            DateDebut = new DateTime(2023, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateFin = new DateTime(2023, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Troisième trimestre"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            DateDebut = new DateTime(2023, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateFin = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Premier trimestre"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            DateDebut = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateFin = new DateTime(2024, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Deuxième trimestre"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            DateDebut = new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateFin = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Troisième trimestre"
-                        });
-                });
-
             modelBuilder.Entity("Frais_Scolaire.Models.Seance", b =>
                 {
                     b.Property<int>("Id")
@@ -806,6 +718,94 @@ namespace Frais_Scolaire.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Frais_Scolaire.Models.Trimestre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateDebut")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateFin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Trimestres", "FraisScolaire");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateDebut = new DateTime(2021, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateFin = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nom = "Premier trimestre"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateDebut = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateFin = new DateTime(2022, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nom = "Deuxième trimestre"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DateDebut = new DateTime(2022, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateFin = new DateTime(2022, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nom = "Troisième trimestre"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DateDebut = new DateTime(2022, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateFin = new DateTime(2022, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nom = "Premier trimestre"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DateDebut = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateFin = new DateTime(2023, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nom = "Deuxième trimestre"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DateDebut = new DateTime(2023, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateFin = new DateTime(2023, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nom = "Troisième trimestre"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DateDebut = new DateTime(2023, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateFin = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nom = "Premier trimestre"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DateDebut = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateFin = new DateTime(2024, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nom = "Deuxième trimestre"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DateDebut = new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateFin = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nom = "Troisième trimestre"
+                        });
+                });
+
             modelBuilder.Entity("Frais_Scolaire.Models.Versement", b =>
                 {
                     b.Property<int>("Id")
@@ -820,14 +820,14 @@ namespace Frais_Scolaire.Data.Migrations
                     b.Property<int>("Montant")
                         .HasColumnType("int");
 
-                    b.Property<int>("PaiementId")
+                    b.Property<int>("TrimestreId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EleveId");
 
-                    b.HasIndex("PaiementId");
+                    b.HasIndex("TrimestreId");
 
                     b.ToTable("Versements", "FraisScolaire");
 
@@ -837,147 +837,147 @@ namespace Frais_Scolaire.Data.Migrations
                             Id = 1,
                             EleveId = 1,
                             Montant = 45000,
-                            PaiementId = 1
+                            TrimestreId = 1
                         },
                         new
                         {
                             Id = 2,
                             EleveId = 2,
                             Montant = 45000,
-                            PaiementId = 1
+                            TrimestreId = 1
                         },
                         new
                         {
                             Id = 3,
                             EleveId = 3,
                             Montant = 45000,
-                            PaiementId = 1
+                            TrimestreId = 1
                         },
                         new
                         {
                             Id = 4,
                             EleveId = 4,
                             Montant = 45000,
-                            PaiementId = 1
+                            TrimestreId = 1
                         },
                         new
                         {
                             Id = 5,
                             EleveId = 5,
                             Montant = 45000,
-                            PaiementId = 1
+                            TrimestreId = 1
                         },
                         new
                         {
                             Id = 6,
                             EleveId = 6,
                             Montant = 45000,
-                            PaiementId = 1
+                            TrimestreId = 1
                         },
                         new
                         {
                             Id = 7,
                             EleveId = 7,
                             Montant = 45000,
-                            PaiementId = 1
+                            TrimestreId = 1
                         },
                         new
                         {
                             Id = 8,
                             EleveId = 1,
                             Montant = 50000,
-                            PaiementId = 2
+                            TrimestreId = 2
                         },
                         new
                         {
                             Id = 9,
                             EleveId = 2,
                             Montant = 50000,
-                            PaiementId = 2
+                            TrimestreId = 2
                         },
                         new
                         {
                             Id = 10,
                             EleveId = 3,
                             Montant = 50000,
-                            PaiementId = 2
+                            TrimestreId = 2
                         },
                         new
                         {
                             Id = 11,
                             EleveId = 4,
                             Montant = 50000,
-                            PaiementId = 2
+                            TrimestreId = 2
                         },
                         new
                         {
                             Id = 12,
                             EleveId = 5,
                             Montant = 50000,
-                            PaiementId = 2
+                            TrimestreId = 2
                         },
                         new
                         {
                             Id = 13,
                             EleveId = 6,
                             Montant = 50000,
-                            PaiementId = 2
+                            TrimestreId = 2
                         },
                         new
                         {
                             Id = 14,
                             EleveId = 7,
                             Montant = 50000,
-                            PaiementId = 2
+                            TrimestreId = 2
                         },
                         new
                         {
                             Id = 15,
                             EleveId = 1,
                             Montant = 55000,
-                            PaiementId = 3
+                            TrimestreId = 3
                         },
                         new
                         {
                             Id = 16,
                             EleveId = 2,
                             Montant = 55000,
-                            PaiementId = 3
+                            TrimestreId = 3
                         },
                         new
                         {
                             Id = 17,
                             EleveId = 3,
                             Montant = 55000,
-                            PaiementId = 3
+                            TrimestreId = 3
                         },
                         new
                         {
                             Id = 18,
                             EleveId = 4,
                             Montant = 55000,
-                            PaiementId = 3
+                            TrimestreId = 3
                         },
                         new
                         {
                             Id = 19,
                             EleveId = 5,
                             Montant = 55000,
-                            PaiementId = 3
+                            TrimestreId = 3
                         },
                         new
                         {
                             Id = 20,
                             EleveId = 6,
                             Montant = 55000,
-                            PaiementId = 3
+                            TrimestreId = 3
                         },
                         new
                         {
                             Id = 21,
                             EleveId = 7,
                             Montant = 55000,
-                            PaiementId = 3
+                            TrimestreId = 3
                         });
                 });
 
@@ -1100,33 +1100,33 @@ namespace Frais_Scolaire.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "fb0437ef-820d-4e15-a77d-51fdc30d84b7",
+                            Id = "f96a693f-e80b-4790-b327-4eb868568f35",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1dadd3c9-e163-4ab0-82ec-afcdb040383d",
+                            ConcurrencyStamp = "794e30cd-4de6-44be-a220-3a6105655af3",
                             Email = "manager@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MANAGER@EMAIL.COM",
                             NormalizedUserName = "MANAGER@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENzHEJaqy3M4o1LAud51Wc5lWaMdWLUMvL3dA3jhhkXLlt/fAUGV8jX2xqe00jotew==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBzzW3Q4Y+HEuwgIhFr5S+kyFpvL9epi1SXoQ6OhcrfCEAzqCnhJZ8Dcxk9xRoQqlQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0d904624-b1fb-4912-8da9-7b4429bca1ac",
+                            SecurityStamp = "e122d81b-7b06-4b7a-b6aa-e3f610983493",
                             TwoFactorEnabled = false,
                             UserName = "manager@email.com"
                         },
                         new
                         {
-                            Id = "2e84516a-3697-4c22-b6f3-7435f95a44bf",
+                            Id = "373d045d-2e52-445c-9fb8-29a7202801a3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a426d6c0-47b4-4caa-aaac-ded5cbf67ce2",
+                            ConcurrencyStamp = "2744abeb-6ba7-49f2-aff9-412f8228ec54",
                             Email = "basic@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "BASIC@EMAIL.COM",
                             NormalizedUserName = "BASIC@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGO4WczZD2+Na290ZteAMTnByv6H1myE+4FMxwwiY7L34fhrzI9cIbNbJfS5RCBRVA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA11HjxU9q0rjYuTBwZfWt8OBLrNMgNpwPiRCySR96lz2mwWX+j1WjHzOvmY+eUiaw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e663e86f-bc42-454a-b4b1-e93361fbfa07",
+                            SecurityStamp = "c10f8a18-9a32-4ad3-b5d8-87bed91b0814",
                             TwoFactorEnabled = false,
                             UserName = "basic@email.com"
                         });
@@ -1162,14 +1162,14 @@ namespace Frais_Scolaire.Data.Migrations
                             Id = 1,
                             ClaimType = "Manager",
                             ClaimValue = "true",
-                            UserId = "fb0437ef-820d-4e15-a77d-51fdc30d84b7"
+                            UserId = "f96a693f-e80b-4790-b327-4eb868568f35"
                         },
                         new
                         {
                             Id = 2,
                             ClaimType = "Basic user",
                             ClaimValue = "true",
-                            UserId = "2e84516a-3697-4c22-b6f3-7435f95a44bf"
+                            UserId = "373d045d-2e52-445c-9fb8-29a7202801a3"
                         });
                 });
 
@@ -1331,15 +1331,15 @@ namespace Frais_Scolaire.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Frais_Scolaire.Models.Paiement", "Paiement")
-                        .WithMany("PaiementVersements")
-                        .HasForeignKey("PaiementId")
+                    b.HasOne("Frais_Scolaire.Models.Trimestre", "Trimestre")
+                        .WithMany("TrimestreVersements")
+                        .HasForeignKey("TrimestreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Eleve");
 
-                    b.Navigation("Paiement");
+                    b.Navigation("Trimestre");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1429,14 +1429,14 @@ namespace Frais_Scolaire.Data.Migrations
                     b.Navigation("MatiereSeances");
                 });
 
-            modelBuilder.Entity("Frais_Scolaire.Models.Paiement", b =>
-                {
-                    b.Navigation("PaiementVersements");
-                });
-
             modelBuilder.Entity("Frais_Scolaire.Models.Seance", b =>
                 {
                     b.Navigation("SeanceAbsences");
+                });
+
+            modelBuilder.Entity("Frais_Scolaire.Models.Trimestre", b =>
+                {
+                    b.Navigation("TrimestreVersements");
                 });
 #pragma warning restore 612, 618
         }

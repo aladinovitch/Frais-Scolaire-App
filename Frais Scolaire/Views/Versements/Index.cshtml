@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.Eleve)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Paiement)
+                @Html.DisplayNameFor(model => model.Trimestre)
             </th>
             <th></th>
         </tr>
@@ -35,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Eleve.Fullname)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Paiement.Nom)
+                @Html.DisplayFor(modelItem => item.Trimestre.Nom)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

@@ -1,5 +1,4 @@
-﻿#nullable disable
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,85 +10,87 @@ using Frais_Scolaire.Models;
 
 namespace Frais_Scolaire.Controllers
 {
-    public class PaiementsController : Controller
+    public class TrimestresController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public PaiementsController(ApplicationDbContext context)
+        public TrimestresController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Paiements
+        // GET: Trimestres
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Paiements.ToListAsync());
+              return _context.Trimestres != null ? 
+                          View(await _context.Trimestres.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Trimestres'  is null.");
         }
 
-        // GET: Paiements/Details/5
+        // GET: Trimestres/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Trimestres == null)
             {
                 return NotFound();
             }
 
-            var paiement = await _context.Paiements
+            var trimestre = await _context.Trimestres
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (paiement == null)
+            if (trimestre == null)
             {
                 return NotFound();
             }
 
-            return View(paiement);
+            return View(trimestre);
         }
 
-        // GET: Paiements/Create
+        // GET: Trimestres/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Paiements/Create
+        // POST: Trimestres/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nom,DateDebut,DateFin")] Paiement paiement)
+        public async Task<IActionResult> Create([Bind("Id,Nom,DateDebut,DateFin")] Trimestre trimestre)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(paiement);
+                _context.Add(trimestre);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(paiement);
+            return View(trimestre);
         }
 
-        // GET: Paiements/Edit/5
+        // GET: Trimestres/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Trimestres == null)
             {
                 return NotFound();
             }
 
-            var paiement = await _context.Paiements.FindAsync(id);
-            if (paiement == null)
+            var trimestre = await _context.Trimestres.FindAsync(id);
+            if (trimestre == null)
             {
                 return NotFound();
             }
-            return View(paiement);
+            return View(trimestre);
         }
 
-        // POST: Paiements/Edit/5
+        // POST: Trimestres/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nom,DateDebut,DateFin")] Paiement paiement)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nom,DateDebut,DateFin")] Trimestre trimestre)
         {
-            if (id != paiement.Id)
+            if (id != trimestre.Id)
             {
                 return NotFound();
             }
@@ -98,12 +99,12 @@ namespace Frais_Scolaire.Controllers
             {
                 try
                 {
-                    _context.Update(paiement);
+                    _context.Update(trimestre);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PaiementExists(paiement.Id))
+                    if (!TrimestreExists(trimestre.Id))
                     {
                         return NotFound();
                     }
@@ -114,41 +115,49 @@ namespace Frais_Scolaire.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(paiement);
+            return View(trimestre);
         }
 
-        // GET: Paiements/Delete/5
+        // GET: Trimestres/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Trimestres == null)
             {
                 return NotFound();
             }
 
-            var paiement = await _context.Paiements
+            var trimestre = await _context.Trimestres
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (paiement == null)
+            if (trimestre == null)
             {
                 return NotFound();
             }
 
-            return View(paiement);
+            return View(trimestre);
         }
 
-        // POST: Paiements/Delete/5
+        // POST: Trimestres/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var paiement = await _context.Paiements.FindAsync(id);
-            _context.Paiements.Remove(paiement);
+            if (_context.Trimestres == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Trimestres'  is null.");
+            }
+            var trimestre = await _context.Trimestres.FindAsync(id);
+            if (trimestre != null)
+            {
+                _context.Trimestres.Remove(trimestre);
+            }
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PaiementExists(int id)
+        private bool TrimestreExists(int id)
         {
-            return _context.Paiements.Any(e => e.Id == id);
+          return (_context.Trimestres?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

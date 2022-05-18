@@ -11,8 +11,8 @@ public class Versement
     [Display(Name = "Elève")]
     public int EleveId { get; set; }
     [Required]
-    [Display(Name = "Paiement")]
-    public int PaiementId { get; set; }
+    [Display(Name = "Trimestre")]
+    public int TrimestreId { get; set; }
     public Eleve? Eleve { get; set; }
-    public Paiement? Paiement { get; set; }
+    public Trimestre? Trimestre { get; set; }
 }

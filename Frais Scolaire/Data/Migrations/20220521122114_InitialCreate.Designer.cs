@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Frais_Scolaire.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220518205058_InitialCreate")]
+    [Migration("20220521122114_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -437,20 +437,80 @@ namespace Frais_Scolaire.Data.Migrations
                         new
                         {
                             Id = 4,
+                            GroupeId = 4,
+                            MatiereId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
                             GroupeId = 1,
                             MatiereId = 2
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 6,
                             GroupeId = 2,
                             MatiereId = 2
                         },
                         new
                         {
-                            Id = 6,
+                            Id = 7,
                             GroupeId = 3,
                             MatiereId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            GroupeId = 4,
+                            MatiereId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            GroupeId = 3,
+                            MatiereId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            GroupeId = 4,
+                            MatiereId = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            GroupeId = 3,
+                            MatiereId = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            GroupeId = 4,
+                            MatiereId = 4
+                        },
+                        new
+                        {
+                            Id = 13,
+                            GroupeId = 3,
+                            MatiereId = 5
+                        },
+                        new
+                        {
+                            Id = 14,
+                            GroupeId = 4,
+                            MatiereId = 5
+                        },
+                        new
+                        {
+                            Id = 15,
+                            GroupeId = 3,
+                            MatiereId = 6
+                        },
+                        new
+                        {
+                            Id = 16,
+                            GroupeId = 4,
+                            MatiereId = 6
                         });
                 });
 
@@ -576,7 +636,7 @@ namespace Frais_Scolaire.Data.Migrations
                         new
                         {
                             Id = 3,
-                            EnseignantId = 1,
+                            EnseignantId = 4,
                             Nom = "Math : Arithmétique"
                         },
                         new
@@ -584,6 +644,24 @@ namespace Frais_Scolaire.Data.Migrations
                             Id = 4,
                             EnseignantId = 4,
                             Nom = "Math : Géométrie"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            EnseignantId = 4,
+                            Nom = "Math : Algebre"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            EnseignantId = 4,
+                            Nom = "Math : Théorie des graphes"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            EnseignantId = 4,
+                            Nom = "Math : Recherche opérationnelle"
                         });
                 });
 
@@ -1100,33 +1178,33 @@ namespace Frais_Scolaire.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f96a693f-e80b-4790-b327-4eb868568f35",
+                            Id = "7cac0d1f-9bf0-4fb3-8790-73b7b19ae121",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "794e30cd-4de6-44be-a220-3a6105655af3",
+                            ConcurrencyStamp = "b1c8697e-d034-43e9-ab82-527aa925bcf2",
                             Email = "manager@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MANAGER@EMAIL.COM",
                             NormalizedUserName = "MANAGER@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBzzW3Q4Y+HEuwgIhFr5S+kyFpvL9epi1SXoQ6OhcrfCEAzqCnhJZ8Dcxk9xRoQqlQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDeWw+QTXxLCkmeCfL6neHJyy1AWuzV5z8Tw6huwAv1/B9koYiIwWJi3i81kg8E9QQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e122d81b-7b06-4b7a-b6aa-e3f610983493",
+                            SecurityStamp = "eec38c32-0c0a-4eb3-87d0-d52025080229",
                             TwoFactorEnabled = false,
                             UserName = "manager@email.com"
                         },
                         new
                         {
-                            Id = "373d045d-2e52-445c-9fb8-29a7202801a3",
+                            Id = "8a3d5b18-92de-4dc7-9850-18a87f13ad6e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2744abeb-6ba7-49f2-aff9-412f8228ec54",
+                            ConcurrencyStamp = "fe968c1c-f813-4ac7-a032-27d6d9eed50f",
                             Email = "basic@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "BASIC@EMAIL.COM",
                             NormalizedUserName = "BASIC@EMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA11HjxU9q0rjYuTBwZfWt8OBLrNMgNpwPiRCySR96lz2mwWX+j1WjHzOvmY+eUiaw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBmvB57c1ZhyXkGnlQrSyvjTNvOsJmDmQ1YcHXH9u8vewmAnOiv6E4XUSXCltiiMpQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c10f8a18-9a32-4ad3-b5d8-87bed91b0814",
+                            SecurityStamp = "3870cad6-b900-4817-a052-ed1c9d1ec22f",
                             TwoFactorEnabled = false,
                             UserName = "basic@email.com"
                         });
@@ -1162,14 +1240,14 @@ namespace Frais_Scolaire.Data.Migrations
                             Id = 1,
                             ClaimType = "Manager",
                             ClaimValue = "true",
-                            UserId = "f96a693f-e80b-4790-b327-4eb868568f35"
+                            UserId = "7cac0d1f-9bf0-4fb3-8790-73b7b19ae121"
                         },
                         new
                         {
                             Id = 2,
                             ClaimType = "Basic user",
                             ClaimValue = "true",
-                            UserId = "373d045d-2e52-445c-9fb8-29a7202801a3"
+                            UserId = "8a3d5b18-92de-4dc7-9850-18a87f13ad6e"
                         });
                 });
 

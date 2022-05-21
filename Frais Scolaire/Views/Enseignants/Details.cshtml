@@ -1,4 +1,4 @@
-﻿@model Frais_Scolaire.Models.Enseignant
+﻿@model Frais_Scolaire.ViewModel.EnseignantVM
 
 @{
 	ViewData["Title"] = "Details";
@@ -12,96 +12,93 @@
 	<hr />
 	<dl class="row">
 		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Matricule)
+			@Html.DisplayNameFor(model => model.Enseignant.Matricule)
 		</dt>
 		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Matricule)
+			@Html.DisplayFor(model => model.Enseignant.Matricule)
 		</dd>
 		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Prenom)
+			@Html.DisplayNameFor(model => model.Enseignant.Prenom)
 		</dt>
 		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Prenom)
+			@Html.DisplayFor(model => model.Enseignant.Prenom)
 		</dd>
 		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Nom)
+			@Html.DisplayNameFor(model => model.Enseignant.Nom)
 		</dt>
 		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Nom)
+			@Html.DisplayFor(model => model.Enseignant.Nom)
 		</dd>
 		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Phone)
+			@Html.DisplayNameFor(model => model.Enseignant.Phone)
 		</dt>
 		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Phone)
+			@Html.DisplayFor(model => model.Enseignant.Phone)
 		</dd>
 		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Email)
+			@Html.DisplayNameFor(model => model.Enseignant.Email)
 		</dt>
 		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Email)
+			@Html.DisplayFor(model => model.Enseignant.Email)
 		</dd>
 		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Adresse)
+			@Html.DisplayNameFor(model => model.Enseignant.Adresse)
 		</dt>
 		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Adresse)
+			@Html.DisplayFor(model => model.Enseignant.Adresse)
 		</dd>
 		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Statut)
+			@Html.DisplayNameFor(model => model.Enseignant.Statut)
 		</dt>
 		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Statut)
+			@Html.DisplayFor(model => model.Enseignant.Statut)
 		</dd>
 		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Salaire)
+			@Html.DisplayNameFor(model => model.Enseignant.Salaire)
 		</dt>
 		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Salaire)
+			@Html.DisplayFor(model => model.Enseignant.Salaire)
 		</dd>
 	</dl>
 	<hr />
-	@foreach (var m in @Model.EnseignantMatieres) {
-		foreach (var e in m.MatiereEnseignements) {
-			var g = e.Groupe;
-			if (g.GroupeEleves.Any()) {
-				<div class="alert alert-dismissible alert-info">
-					<h4 class="alert-heading">Groupe @g.Nom, @g.AnneeEtude.Nom, @g.AnneeScolaire.Nom</h4>
-				</div>
-				<table class="table table-hover">
-					<thead>
+	@foreach (var g in @Model.Groupes) {
+		if (g.GroupeEleves.Any()) {
+			<div class="alert alert-dismissible alert-info">
+				<h4 class="alert-heading">Groupe @g.Nom, @g.AnneeEtude.Nom, @g.AnneeScolaire.Nom</h4>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Matricule</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Prénom</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Naissance</th>
+						<th scope="col">Sexe</th>
+						<th scope="col">Phone</th>
+						<th scope="col">Email</th>
+						<th scope="col">Adresse</th>
+					</tr>
+				</thead>
+				@foreach (var eleve in g.GroupeEleves) {
+					<tbody>
 						<tr>
-							<th scope="col">Matricule</th>
-							<th scope="col">Nom</th>
-							<th scope="col">Prénom</th>
-							<th scope="col">Nom</th>
-							<th scope="col">Naissance</th>
-							<th scope="col">Sexe</th>
-							<th scope="col">Phone</th>
-							<th scope="col">Email</th>
-							<th scope="col">Adresse</th>
+							<td>@eleve.Matricule</td>
+							<td>@eleve.Nom</td>
+							<td>@eleve.Prenom</td>
+							<td>@eleve.Nom</td>
+							<td>@eleve.Naissance</td>
+							<td>@eleve.Sexe</td>
+							<td>@eleve.Phone</td>
+							<td>@eleve.Email</td>
+							<td>@eleve.Adresse</td>
 						</tr>
-					</thead>
-					@foreach (var eleve in g.GroupeEleves) {
-						<tbody>
-							<tr>
-								<td>@eleve.Matricule</td>
-								<td>@eleve.Nom</td>
-								<td>@eleve.Prenom</td>
-								<td>@eleve.Nom</td>
-								<td>@eleve.Naissance</td>
-								<td>@eleve.Sexe</td>
-								<td>@eleve.Phone</td>
-								<td>@eleve.Email</td>
-								<td>@eleve.Adresse</td>
-							</tr>
-						</tbody>
-					}
-				</table>
-			}
-		}break;
+					</tbody>
+				}
+			</table>
+		}
 	}
 	<div>
-		<a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+		<a asp-action="Edit" asp-route-id="@Model?.Enseignant.Id">Edit</a> |
 		<a asp-action="Index">Back to List</a>
 	</div>

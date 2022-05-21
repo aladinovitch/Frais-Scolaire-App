@@ -333,8 +333,8 @@ namespace Frais_Scolaire.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "373d045d-2e52-445c-9fb8-29a7202801a3", 0, "2744abeb-6ba7-49f2-aff9-412f8228ec54", "basic@email.com", true, false, null, "BASIC@EMAIL.COM", "BASIC@EMAIL.COM", "AQAAAAEAACcQAAAAEA11HjxU9q0rjYuTBwZfWt8OBLrNMgNpwPiRCySR96lz2mwWX+j1WjHzOvmY+eUiaw==", null, false, "c10f8a18-9a32-4ad3-b5d8-87bed91b0814", false, "basic@email.com" },
-                    { "f96a693f-e80b-4790-b327-4eb868568f35", 0, "794e30cd-4de6-44be-a220-3a6105655af3", "manager@email.com", true, false, null, "MANAGER@EMAIL.COM", "MANAGER@EMAIL.COM", "AQAAAAEAACcQAAAAEBzzW3Q4Y+HEuwgIhFr5S+kyFpvL9epi1SXoQ6OhcrfCEAzqCnhJZ8Dcxk9xRoQqlQ==", null, false, "e122d81b-7b06-4b7a-b6aa-e3f610983493", false, "manager@email.com" }
+                    { "7cac0d1f-9bf0-4fb3-8790-73b7b19ae121", 0, "b1c8697e-d034-43e9-ab82-527aa925bcf2", "manager@email.com", true, false, null, "MANAGER@EMAIL.COM", "MANAGER@EMAIL.COM", "AQAAAAEAACcQAAAAEDeWw+QTXxLCkmeCfL6neHJyy1AWuzV5z8Tw6huwAv1/B9koYiIwWJi3i81kg8E9QQ==", null, false, "eec38c32-0c0a-4eb3-87d0-d52025080229", false, "manager@email.com" },
+                    { "8a3d5b18-92de-4dc7-9850-18a87f13ad6e", 0, "fe968c1c-f813-4ac7-a032-27d6d9eed50f", "basic@email.com", true, false, null, "BASIC@EMAIL.COM", "BASIC@EMAIL.COM", "AQAAAAEAACcQAAAAEBmvB57c1ZhyXkGnlQrSyvjTNvOsJmDmQ1YcHXH9u8vewmAnOiv6E4XUSXCltiiMpQ==", null, false, "3870cad6-b900-4817-a052-ed1c9d1ec22f", false, "basic@email.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -372,8 +372,8 @@ namespace Frais_Scolaire.Data.Migrations
                 columns: new[] { "Id", "ClaimType", "ClaimValue", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Manager", "true", "f96a693f-e80b-4790-b327-4eb868568f35" },
-                    { 2, "Basic user", "true", "373d045d-2e52-445c-9fb8-29a7202801a3" }
+                    { 1, "Manager", "true", "7cac0d1f-9bf0-4fb3-8790-73b7b19ae121" },
+                    { 2, "Basic user", "true", "8a3d5b18-92de-4dc7-9850-18a87f13ad6e" }
                 });
 
             migrationBuilder.InsertData(
@@ -400,8 +400,11 @@ namespace Frais_Scolaire.Data.Migrations
                 {
                     { 1, 3, "Anglais : Introductory Course" },
                     { 2, 3, "Français : Grammaire et conjugaison" },
-                    { 3, 1, "Math : Arithmétique" },
-                    { 4, 4, "Math : Géométrie" }
+                    { 3, 4, "Math : Arithmétique" },
+                    { 4, 4, "Math : Géométrie" },
+                    { 5, 4, "Math : Algebre" },
+                    { 6, 4, "Math : Théorie des graphes" },
+                    { 7, 4, "Math : Recherche opérationnelle" }
                 });
 
             migrationBuilder.InsertData(
@@ -428,9 +431,19 @@ namespace Frais_Scolaire.Data.Migrations
                     { 1, 1, 1 },
                     { 2, 2, 1 },
                     { 3, 3, 1 },
-                    { 4, 1, 2 },
-                    { 5, 2, 2 },
-                    { 6, 3, 2 }
+                    { 4, 4, 1 },
+                    { 5, 1, 2 },
+                    { 6, 2, 2 },
+                    { 7, 3, 2 },
+                    { 8, 4, 2 },
+                    { 9, 3, 3 },
+                    { 10, 4, 3 },
+                    { 11, 3, 4 },
+                    { 12, 4, 4 },
+                    { 13, 3, 5 },
+                    { 14, 4, 5 },
+                    { 15, 3, 6 },
+                    { 16, 4, 6 }
                 });
 
             migrationBuilder.InsertData(
@@ -627,13 +640,13 @@ namespace Frais_Scolaire.Data.Migrations
                 schema: "FraisScolaire",
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "373d045d-2e52-445c-9fb8-29a7202801a3");
+                keyValue: "7cac0d1f-9bf0-4fb3-8790-73b7b19ae121");
 
             migrationBuilder.DeleteData(
                 schema: "FraisScolaire",
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "f96a693f-e80b-4790-b327-4eb868568f35");
+                keyValue: "8a3d5b18-92de-4dc7-9850-18a87f13ad6e");
 
             migrationBuilder.RenameTable(
                 name: "AspNetUserTokens",

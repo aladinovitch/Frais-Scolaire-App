@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Frais_Scolaire.Data;
 using Frais_Scolaire.Models;
+using Frais_Scolaire.ViewModel;
 
 namespace Frais_Scolaire.Controllers
 {
@@ -57,23 +58,18 @@ namespace Frais_Scolaire.Controllers
                 .ThenInclude(x => x.MatiereEnseignements)
                 .ThenInclude(x => x.Groupe)
                 .ThenInclude(x => x.GroupeEleves)
-
-                .Include(x => x.EnseignantMatieres)
-                .ThenInclude(x => x.MatiereEnseignements)
-                .ThenInclude(x => x.Groupe)
-                .ThenInclude(x => x.AnneeEtude)
-
-                .Include(x => x.EnseignantMatieres)
-                .ThenInclude(x => x.MatiereEnseignements)
-                .ThenInclude(x => x.Groupe)
-                .ThenInclude(x => x.AnneeScolaire)
                 .FirstOrDefaultAsync(m => m.Id == id);
+            var groups = await _context.Groupes
+                .Include(x => x.AnneeEtude)
+                .Include(x => x.AnneeScolaire)
+                .Where(x => x.GroupeEnseignements.Any(x => x.Matiere.Enseignant.Id == id))
+                .ToListAsync();
             if (enseignant == null)
             {
                 return NotFound();
             }
 
-            return View(enseignant);
+            return View(new EnseignantVM(enseignant, groups));
         }
 
         // GET: Enseignants/Create

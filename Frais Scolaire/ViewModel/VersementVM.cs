@@ -4,8 +4,8 @@ namespace Frais_Scolaire.ViewModel;
 public class VersementVM
 {
     public VersementVM(Eleve eleve, Trimestre paiement) {
-        this.Eleve = eleve;
-        this.Paiement = paiement;
+        Eleve = eleve;
+        Paiement = paiement;
     }
     public Eleve? Eleve { get; set; }
     public Trimestre? Paiement { get; set; }

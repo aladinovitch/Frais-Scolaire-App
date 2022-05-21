@@ -160,8 +160,12 @@ namespace Frais_Scolaire.Data
             modelBuilder.Entity<Matiere>().HasData(
                 new Matiere { Id = 1, Nom = "Anglais : Introductory Course", EnseignantId = 3 },
                 new Matiere { Id = 2, Nom = "Français : Grammaire et conjugaison", EnseignantId = 3 },
-                new Matiere { Id = 3, Nom = "Math : Arithmétique", EnseignantId = 1 },
-                new Matiere { Id = 4, Nom = "Math : Géométrie", EnseignantId = 4 });
+                new Matiere { Id = 3, Nom = "Math : Arithmétique", EnseignantId = 4 },
+                new Matiere { Id = 4, Nom = "Math : Géométrie", EnseignantId = 4 },
+                new Matiere { Id = 5, Nom = "Math : Algebre", EnseignantId = 4 },
+                new Matiere { Id = 6, Nom = "Math : Théorie des graphes", EnseignantId = 4 },
+                new Matiere { Id = 7, Nom = "Math : Recherche opérationnelle", EnseignantId = 4 }
+                );
 
             modelBuilder.Entity<Seance>().HasData(
                 new Seance { Id = 1, Numero = 1, Date = DateTime.Parse("2022-01-01 09:00"), MatiereId = 1 },
@@ -184,10 +188,19 @@ namespace Frais_Scolaire.Data
                 new Enseignement { Id = 1, GroupeId = 1, MatiereId = 1 },
                 new Enseignement { Id = 2, GroupeId = 2, MatiereId = 1 },
                 new Enseignement { Id = 3, GroupeId = 3, MatiereId = 1 },
-                new Enseignement { Id = 4, GroupeId = 1, MatiereId = 2 },
-                new Enseignement { Id = 5, GroupeId = 2, MatiereId = 2 },
-                new Enseignement { Id = 6, GroupeId = 3, MatiereId = 2 }
-                );
+                new Enseignement { Id = 4, GroupeId = 4, MatiereId = 1 },
+                new Enseignement { Id = 5, GroupeId = 1, MatiereId = 2 },
+                new Enseignement { Id = 6, GroupeId = 2, MatiereId = 2 },
+                new Enseignement { Id = 7, GroupeId = 3, MatiereId = 2 },
+                new Enseignement { Id = 8, GroupeId = 4, MatiereId = 2 },
+                new Enseignement { Id = 9, GroupeId = 3, MatiereId = 3 },
+                new Enseignement { Id = 10, GroupeId = 4, MatiereId = 3 },
+                new Enseignement { Id = 11, GroupeId = 3, MatiereId = 4 },
+                new Enseignement { Id = 12, GroupeId = 4, MatiereId = 4 },
+                new Enseignement { Id = 13, GroupeId = 3, MatiereId = 5 },
+                new Enseignement { Id = 14, GroupeId = 4, MatiereId = 5 },
+                new Enseignement { Id = 15, GroupeId = 3, MatiereId = 6},
+                new Enseignement { Id = 16, GroupeId = 4, MatiereId = 6 });
 
             modelBuilder.Entity<Trimestre>().HasData(
                 new Trimestre { Id = 1, Nom = "Premier trimestre", DateDebut = DateTime.Parse("2021-10-01"), DateFin = DateTime.Parse("2021-12-31") },
